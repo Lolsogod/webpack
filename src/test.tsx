@@ -1,3 +1,3 @@
-const Test = () => <h1>Hello from React!</h1>;
+const Test = () => <h1>Hello World!</h1>;
 
 export default Test;
