@@ -1,5 +1,15 @@
 {
   "compilerOptions": {
-    "jsx": "react-jsx",
-  }
+    "target": "es5",
+    "module": "esnext",
+    "jsx": "react",
+    "moduleResolution": "node",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "outDir": "dist"
+  },
+  "include": ["src"],
+  "exclude": ["dist"],
 }

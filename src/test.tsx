@@ -1,6 +1,6 @@
+import * as React from "react"
 import smile from "./images/smile.png"
 import css from "./styles/main.css"
-
 
 const Test = () => (
   <div className="cont" style={css}>
