@@ -1,4 +1,53 @@
-.cont{
-    background-color: black;
-    color: white
+.container {
+  min-height: 100vh;
+  color: white;
+  background-color: #1f1f1f;
+}
+nav {
+  background-color: #181818;
+  padding: 1rem;
+  color: white;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  align-items: center;
+}
+nav > h1 {
+  margin: 0;
+}
+
+.search {
+  display: flex;
+  gap: 1rem;
+}
+.search > input {
+  height: 1rem;
+  width: 15rem;
+  padding: 0.5rem;
+}
+
+/*some radio styles*/
+.r-group {
+  display: inline-block;
+  overflow: hidden;
+}
+.r-group-item {
+  display: inline-block;
+  float: left;
+}
+.r-group input[type="radio"] {
+  display: none;
+}
+.r-group label {
+  display: inline-block;
+  cursor: pointer;
+  padding: 0px 15px;
+  line-height: 34px;
+  border: 1px solid white;
+  user-select: none;
+}
+
+.r-group input[type="radio"]:checked + label {
+  color: black;
+  background: #a6ffb2;
 }
