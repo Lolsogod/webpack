@@ -35,6 +35,7 @@ const Search = () => {
           <label htmlFor="radio-2">Genere</label>
         </div>
       </div>
+      <button>Search</button>
     </div>
   );
 };
