@@ -1,10 +1,10 @@
-import * as React from "react";
+
 import Header from "./layout/Header";
 import Footer from "./layout/Footer";
-import style from "./styles/main.css";
+import style from"./styles/main.module.scss";
 
 const App = () => (
-  <div className="container" style={style}>
+  <div className={style.container}>
     <Header />
     <Footer />
   </div>

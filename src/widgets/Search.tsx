@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
+import style from "../styles/search.module.scss"
 
 const Search = () => {
   const [filter, setFilter] = useState("title");
@@ -9,10 +10,10 @@ const Search = () => {
   };
 
   return (
-    <div className="search">
+    <div className={style.search}>
       <input type="text" placeholder="search..." />
-      <div className="r-group">
-        <div className="r-group-item">
+      <div className={style.rgroup}>
+        <div className={style.rgroupitem}>
           <input
             onChange={filterSelector}
             id="radio-1"
@@ -23,7 +24,7 @@ const Search = () => {
           />
           <label htmlFor="radio-1">Title</label>
         </div>
-        <div className="r-group-item">
+        <div className={style.rgroupitem}>
           <input
             onChange={filterSelector}
             id="radio-2"
