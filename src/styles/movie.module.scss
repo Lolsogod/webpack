@@ -1,0 +1,22 @@
+.card {
+  width: 20rem;
+  background-color: #181818;
+  display: flex;
+  flex-direction: column;
+  .info {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    h3 {
+      margin: 0;
+    }
+    .gen {
+      color: gray;
+    }
+  }
+}

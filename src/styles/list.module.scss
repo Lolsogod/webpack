@@ -1,0 +1,23 @@
+.list {
+  justify-content: center;
+  margin: 1rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.header {
+  font-weight: bold;
+  display: flex;
+  padding: 1rem;
+  justify-content: space-between;
+  .sort {
+    display: flex;
+    gap: 1rem;
+    div:not(:first-child) {
+      cursor: pointer;
+      &:hover {
+        color: #a6ffb2;
+      }
+    }
+  }
+}
