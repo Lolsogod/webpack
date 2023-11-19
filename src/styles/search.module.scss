@@ -1,0 +1,50 @@
+.search {
+  display: flex;
+  gap: 1rem;
+  
+  input[type="text"] {
+    height: 1rem;
+    width: 15rem;
+    padding: 0.5rem;
+    font-size: larger;
+  }
+
+  button {
+    font-size: large;
+    padding: 0 1rem;
+    line-height: 34px;
+    color: #a6ffb2;
+    border: #a6ffb2 1px solid;
+    background-color: transparent;
+    cursor: pointer;
+    &:active {
+      background-color: #a6ffb2;
+      color: black;
+    }
+  }
+
+  .rgroup {
+    display: inline-block;
+    overflow: hidden;
+    .rgroupitem {
+      display: inline-block;
+    }
+    input[type="radio"] {
+      display: none;
+      &:checked + label {
+        color: black;
+        background: #a6ffb2;
+      }
+    }
+    label {
+      font-size: large;
+      color: #a6ffb2;
+      display: inline-block;
+      cursor: pointer;
+      padding: 0px 15px;
+      line-height: 34px;
+      border: 1px solid #a6ffb2;
+      user-select: none;
+    }
+  }
+}

@@ -1,5 +1,5 @@
 const path = require("path");
-const TerserPlugin = require('terser-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -17,11 +17,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: ["babel-loader"],
-      },
-      {
         test: /\.(ts|tsx)$/,
         loader: "ts-loader",
       },
@@ -31,8 +26,8 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
-        type: 'asset/resource',
-      }
+        type: "asset/resource",
+      },
     ],
   },
   resolve: {
