@@ -8,8 +8,8 @@ const MovieList = () => {
         <span>{movies.length} movies found</span>
         <div className={styles.sort}>
           <div>Sort By:</div>
-          <div>release date</div>
-          <div>name</div>
+          <div className={styles.sorter}>release date</div>
+          <div className={styles.sorter}>name</div>
         </div>
       </div>
       <div className={styles.list}>

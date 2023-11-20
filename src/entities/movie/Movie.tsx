@@ -5,7 +5,7 @@ const Movie = (info: MovieInfo) => {
     <div className={styles.card}>
       <img src={info.poster} alt="poster..." />
       <div className={styles.info}>
-        <div>
+        <div className={styles.mainInfo}>
           <h3>{info.name}</h3>
           <span>{info.year}</span>
         </div>
