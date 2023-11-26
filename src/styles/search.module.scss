@@ -1,7 +1,7 @@
 .search {
   display: flex;
   gap: 1rem;
-  
+
   input[type="text"] {
     height: 1rem;
     width: 15rem;
@@ -23,10 +23,10 @@
     }
   }
 
-  .rgroup {
+  .radioGroup {
     display: inline-block;
     overflow: hidden;
-    .rgroupitem {
+    .radioGroupItem {
       display: inline-block;
     }
     input[type="radio"] {
