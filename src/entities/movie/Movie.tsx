@@ -1,6 +1,6 @@
 import styles from "../../styles/movie.module.scss";
 
-const Movie = (info: MovieInfo) => {
+const Movie = (info: IMovieInfo) => {
   return (
     <div className={styles.card}>
       <img src={info.poster} alt="poster..." />
