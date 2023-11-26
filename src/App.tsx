@@ -7,17 +7,17 @@ import { useMemo, useState } from "react";
 import { movies } from "./entities/movie/data";
 
 const App = () => {
-  const [curIndex, setCurIndex] = useState<number>(5);
+  const [curIndex, setCurIndex] = useState<number>(-1);
   const curMovie = useMemo(() => {
-    if (curIndex) return movies[curIndex];
+    if (curIndex>=0) return movies[curIndex];
     else return null;
   }, [curIndex]);
 
   return (
     <div className={style.container}>
-      <Header />
+      <Header setCurIndex={setCurIndex} curMovie={curMovie}/>
       {curMovie && <MovieInfo {...curMovie} />}
-      <MovieList />
+      <MovieList setCurIndex={setCurIndex} />
       <Footer />
     </div>
   );

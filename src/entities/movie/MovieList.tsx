@@ -1,7 +1,7 @@
 import Movie from "./Movie";
 import styles from "../../styles/list.module.scss";
 import { movies } from "./data";
-const MovieList = () => {
+const MovieList = (props: {setCurIndex: React.Dispatch<React.SetStateAction<number>>}) => {
   return (
     <>
       <div className={styles.header}>
@@ -14,7 +14,7 @@ const MovieList = () => {
       </div>
       <div className={styles.list}>
         {movies.map((info) => (
-          <Movie key={info.id} {...info} />
+          <Movie setCurIndex={props.setCurIndex} key={info.id} info={info} />
         ))}
       </div>
     </>
