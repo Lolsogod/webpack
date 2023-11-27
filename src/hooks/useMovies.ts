@@ -20,7 +20,7 @@ const useMovies = () => {
   });
 
   useEffect(() => {
-    let result = movies;
+    let result = [...movies];
     if (listState.search.query) {
       const reg = new RegExp(`${listState.search.query}`, "i");
       result = result.filter((movie) => reg.test(movie[listState.search.type]));
@@ -35,7 +35,7 @@ const useMovies = () => {
         result = result.sort((a, b) => a.year - b.year);
         break;
     }
-    setMoviesList([...result]);
+    setMoviesList(result);
     console.log(moviesList);
   }, [listState]);
 
