@@ -3,6 +3,7 @@ import { movies } from "../entities/movie/data";
 
 const useMovies = () => {
   const [moviesList, setMoviesList] = useState<IMovieInfo[]>();
+  //разделить на два отд хука?
   const [search, setSearch] = useState<ISearch>({ query: "", type: "name" });
   const [sort, setSort] = useState<ISort>({ type: "name", asc: true });
 

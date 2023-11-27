@@ -1,26 +1,24 @@
 .info {
-    display: flex;
-    gap: 5rem;
-    padding: 1rem 5rem;
-    background-color: #181818;
-    justify-content: center;
-  .poster{
+  display: flex;
+  gap: 5rem;
+  padding: 1rem 5rem;
+  background-color: #181818;
+  justify-content: center;
+  .poster {
     width: 400px;
     height: 600px;
-    
   }
-  .textInfo{
+  .textInfo {
     width: 1000px;
     display: flex;
     flex-direction: column;
-    .name{
-        display: inline-block;
-        font-size: 2rem;
-        margin: 0;
+    .name {
+      display: inline-block;
+      font-size: 2rem;
+      margin: 0;
     }
-    .secondary{
-        color: gray
+    .secondary {
+      color: gray;
     }
-   
   }
 }

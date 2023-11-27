@@ -25,13 +25,14 @@ const Search = (props: {
   };
 
   const enterCommit = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       commitSearch();
     }
   };
   return (
     <div className={style.search}>
       <input
+        className={style.searchBar}
         type="text"
         placeholder="search..."
         value={locSearch.query}
@@ -41,6 +42,7 @@ const Search = (props: {
       <div className={style.radioGroup}>
         <div className={style.radioGroupItem}>
           <input
+            className={style.hidden}
             onChange={setType}
             id="radio-1"
             type="radio"
@@ -48,10 +50,13 @@ const Search = (props: {
             value="name"
             checked={locSearch.type == "name"}
           />
-          <label htmlFor="radio-1">Title</label>
+          <label className={style.radio} htmlFor="radio-1">
+            Title
+          </label>
         </div>
         <div className={style.radioGroupItem}>
           <input
+            className={style.hidden}
             onChange={setType}
             id="radio-2"
             type="radio"
@@ -59,10 +64,14 @@ const Search = (props: {
             value="genere"
             checked={locSearch.type == "genere"}
           />
-          <label htmlFor="radio-2">Genere</label>
+          <label className={style.radio} htmlFor="radio-2">
+            Genere
+          </label>
         </div>
       </div>
-      <button onClick={commitSearch}>Search</button>
+      <button className={style.searchBtn} onClick={commitSearch}>
+        Search
+      </button>
     </div>
   );
 };

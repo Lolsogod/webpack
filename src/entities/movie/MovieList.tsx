@@ -8,20 +8,20 @@ const MovieList = (props: {
   sort: ISort;
 }) => {
   const { setCurIndex, moviesList, setSort, sort } = props;
-
+  //может вынести в отдельный компонент?
   const handleSort = (type: "name" | "year") => {
     setSort({ type, asc: sort.type != type ? true : !sort.asc });
   };
   const sortedStyle = (type: string) =>
     sort.type == type ? styles.sorted : "";
 
-  const getDirArrow = (type: "name" | "year") =>{
-    if (sort.type == type){
-      if (sort.asc) return "▲"
-      else return "▼"
+  const getDirArrow = (type: "name" | "year") => {
+    if (sort.type == type) {
+      if (sort.asc) return "▲";
+      else return "▼";
     }
-    return ""
-  }
+    return "";
+  };
   if (moviesList) {
     return (
       <>
@@ -33,13 +33,13 @@ const MovieList = (props: {
               className={`${styles.sorter} ${sortedStyle("year")}`}
               onClick={() => handleSort("year")}
             >
-              release date {`${getDirArrow('year')}`}
+              release date {`${getDirArrow("year")}`}
             </div>
             <div
               className={`${styles.sorter} ${sortedStyle("name")}`}
               onClick={() => handleSort("name")}
             >
-              name {`${getDirArrow('name')}`}
+              name {`${getDirArrow("name")}`}
             </div>
           </div>
         </div>

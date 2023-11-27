@@ -1,4 +1,4 @@
-nav {
+.navBar {
   background-color: #181818;
   padding: 1rem;
   color: white;
@@ -6,7 +6,7 @@ nav {
   justify-content: center;
   gap: 2rem;
   align-items: center;
-  h1 {
+  .logo {
     margin: 0;
   }
   .searchBtn {
