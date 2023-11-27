@@ -3,14 +3,15 @@ import Search from "../widgets/Search";
 
 const Header = (props: {
   setCurIndex: React.Dispatch<React.SetStateAction<number>>;
-  curMovie: IMovieInfo | null
+  curMovie: IMovieInfo | null;
+  setSearch: React.Dispatch<React.SetStateAction<ISearch>>;
 }) => {
-  const {curMovie, setCurIndex } = props;
+  const {curMovie, setCurIndex, setSearch} = props;
 
   return (
     <nav style={style}>
       <h1>CoolMovies</h1>
-      {!curMovie && <Search />}
+      {!curMovie && <Search setSearch={setSearch}/>}
       {curMovie && <button className={style.searchBtn} onClick={() => setCurIndex(-1)}>Search</button>}
     </nav>
   );

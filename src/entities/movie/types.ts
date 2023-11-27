@@ -7,3 +7,11 @@ interface IMovieInfo {
   lenght: string;
   descr: string;
 }
+interface ISearch {
+  query: string;
+  type: "name" | "genere";
+}
+interface ISort {
+  type: "name" | "year";
+  direction: "asc" | "desc";
+}

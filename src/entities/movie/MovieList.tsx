@@ -4,8 +4,9 @@ import useMovies from "../../hooks/useMovies";
 
 const MovieList = (props: {
   setCurIndex: React.Dispatch<React.SetStateAction<number>>;
+  moviesList: IMovieInfo[] | undefined
 }) => {
-  const { moviesList } = useMovies();
+  const {setCurIndex, moviesList} = props
   if (moviesList) {
     return (
       <>
@@ -19,7 +20,7 @@ const MovieList = (props: {
         </div>
         <div className={styles.list}>
           {moviesList.map((info) => (
-            <Movie setCurIndex={props.setCurIndex} key={info.id} info={info} />
+            <Movie setCurIndex={setCurIndex} key={info.id} info={info} />
           ))}
         </div>
       </>
