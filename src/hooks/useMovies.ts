@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { movies } from "../entities/movie/data";
 
-
 const useMovies = () => {
   const [moviesList, setMoviesList] = useState<IMovieInfo[]>();
   const [search, setSearch] = useState<ISearch>({ query: "", type: "name" });
-  const [sort, setSort] = useState<ISort>({ type: "name", direction: "asc" });
+  const [sort, setSort] = useState<ISort>({ type: "name", asc: true });
 
   useEffect(() => {
     let result = [...movies];
@@ -23,10 +22,13 @@ const useMovies = () => {
         result = result.sort((a, b) => a.year - b.year);
         break;
     }
+    if (!sort.asc) {
+      result = result.reverse();
+    }
     setMoviesList(result);
   }, [sort, search]);
 
-  return { moviesList, search, setSearch };
+  return { moviesList, search, setSearch, setSort, sort };
 };
 
 export default useMovies;

@@ -13,5 +13,5 @@ interface ISearch {
 }
 interface ISort {
   type: "name" | "year";
-  direction: "asc" | "desc";
+  asc: boolean
 }
