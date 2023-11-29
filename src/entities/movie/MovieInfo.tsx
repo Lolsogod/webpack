@@ -1,6 +1,7 @@
 import styles from "../../styles/movieInfo.module.scss";
 
-const MovieInfo = (info: IMovieInfo) => {
+const MovieInfo = (props: {info: IMovieInfo}) => {
+  const {info} = props
   return (
     <div className={styles.info}>
       <img className={styles.poster} src={info.poster} alt="" />

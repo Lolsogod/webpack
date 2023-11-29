@@ -12,8 +12,15 @@ const MovieList = (props: {
   const handleSort = (type: "name" | "year") => {
     setSort({ type, asc: sort.type != type ? true : !sort.asc });
   };
+
+  const sortByYear = () => handleSort("year")
+  const sortByName = () => handleSort("name")
+
   const sortedStyle = (type: string) =>
     sort.type == type ? styles.sorted : "";
+
+  const styleByYear = () => sortedStyle("year")
+  const styleByName = () => sortedStyle("name")
 
   const getDirArrow = (type: "name" | "year") => {
     if (sort.type == type) {
@@ -22,6 +29,9 @@ const MovieList = (props: {
     }
     return "";
   };
+
+  const arrowByYear = () => getDirArrow("year")
+  const arrowByName = () => getDirArrow("name")
   if (moviesList) {
     return (
       <>
@@ -30,16 +40,16 @@ const MovieList = (props: {
           <div className={styles.sort}>
             <div>Sort By:</div>
             <div
-              className={`${styles.sorter} ${sortedStyle("year")}`}
-              onClick={() => handleSort("year")}
+              className={`${styles.sorter} ${styleByYear}`}
+              onClick={sortByYear}
             >
-              release date {`${getDirArrow("year")}`}
+              release date {`${arrowByYear}`}
             </div>
             <div
-              className={`${styles.sorter} ${sortedStyle("name")}`}
-              onClick={() => handleSort("name")}
+              className={`${styles.sorter} ${styleByYear}`}
+              onClick={sortByName}
             >
-              name {`${getDirArrow("name")}`}
+              name {`${arrowByYear}`}
             </div>
           </div>
         </div>
