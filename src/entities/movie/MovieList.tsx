@@ -46,10 +46,10 @@ const MovieList = (props: {
               release date {`${arrowByYear}`}
             </div>
             <div
-              className={`${styles.sorter} ${styleByYear}`}
+              className={`${styles.sorter} ${styleByName}`}
               onClick={sortByName}
             >
-              name {`${arrowByYear}`}
+              name {`${arrowByName}`}
             </div>
           </div>
         </div>
