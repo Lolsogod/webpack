@@ -2,14 +2,14 @@
   display: flex;
   gap: 1rem;
 
-  input[type="text"] {
+  .searchBar {
     height: 1rem;
     width: 15rem;
     padding: 0.5rem;
     font-size: larger;
   }
 
-  button {
+  .searchBtn {
     font-size: large;
     padding: 0 1rem;
     line-height: 34px;
@@ -29,14 +29,14 @@
     .radioGroupItem {
       display: inline-block;
     }
-    input[type="radio"] {
+    .hidden {
       display: none;
       &:checked + label {
         color: black;
         background: #a6ffb2;
       }
     }
-    label {
+    .radio {
       font-size: large;
       color: #a6ffb2;
       display: inline-block;

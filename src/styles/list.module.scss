@@ -13,11 +13,15 @@
   .sort {
     display: flex;
     gap: 1rem;
+    user-select: none;
     .sorter {
       cursor: pointer;
       &:hover {
         color: #a6ffb2;
       }
+    }
+    .sorted {
+      color: #a6ffb2;
     }
   }
 }
