@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { movies } from "../entities/movie/data";
+//import { movies } from "../entities/movie/data";
 
 const useMovies = () => {
   const [moviesList, setMoviesList] = useState<IMovieInfo[]>();
@@ -8,19 +8,19 @@ const useMovies = () => {
   const [sort, setSort] = useState<ISort>({ type: "name", asc: true });
 
   useEffect(() => {
-    let result = [...movies];
+    let result: any = [];
     if (search.query) {
       const reg = new RegExp(`${search.query}`, "i");
-      result = result.filter((movie) => reg.test(movie[search.type]));
+      result = result.filter((movie: any) => reg.test(movie[search.type]));
     }
     switch (sort.type) {
       case "name":
-        result = result.sort((a, b) =>
+        result = result.sort((a: any, b: any) =>
           a.name.toUpperCase().localeCompare(b.name.toUpperCase())
         );
         break;
       case "year":
-        result = result.sort((a, b) => a.year - b.year);
+        result = result.sort((a: any, b: any) => a.year - b.year);
         break;
     }
     if (!sort.asc) {

@@ -4,25 +4,21 @@ import style from "./styles/main.module.scss";
 import MovieList from "./entities/movie/MovieList";
 import MovieInfo from "./entities/movie/MovieInfo";
 import { useEffect, useMemo, useState } from "react";
-import { movies } from "./entities/movie/data";
+
 import useMovies from "./hooks/useMovies";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "./store";
 
 const App = () => {
   const { setSearch, setSort, sort } = useMovies();
   const [curIndex, setCurIndex] = useState<number>(-1);
-  const [curMovie, setCurMovie] = useState<IMovieInfo | null>(null)
+  const [curMovie, setCurMovie] = useState<IMovieInfo | null>(null);
 
-  const getCurMovie = () => {
+  /*const getCurMovie = () => {
     if (curIndex >= 0) return movies[curIndex];
     else return null;
   };
-  useEffect(()=>{
-    setCurMovie(getCurMovie())
-  }, [curIndex])
-
-
+  useEffect(() => {
+    setCurMovie(getCurMovie());
+  }, [curIndex]);*/
 
   return (
     <div className={style.container}>
@@ -32,11 +28,7 @@ const App = () => {
         setSearch={setSearch}
       />
       {curMovie && <MovieInfo info={curMovie} />}
-      <MovieList
-        setCurIndex={setCurIndex}
-        setSort={setSort}
-        sort={sort}
-      />
+      <MovieList setCurIndex={setCurIndex} setSort={setSort} sort={sort} />
       <Footer />
     </div>
   );
