@@ -6,9 +6,11 @@ import MovieInfo from "./entities/movie/MovieInfo";
 import { useEffect, useMemo, useState } from "react";
 import { movies } from "./entities/movie/data";
 import useMovies from "./hooks/useMovies";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "./store";
 
 const App = () => {
-  const { moviesList, setSearch, setSort, sort } = useMovies();
+  const { setSearch, setSort, sort } = useMovies();
   const [curIndex, setCurIndex] = useState<number>(-1);
   const [curMovie, setCurMovie] = useState<IMovieInfo | null>(null)
 
@@ -20,6 +22,8 @@ const App = () => {
     setCurMovie(getCurMovie())
   }, [curIndex])
 
+
+
   return (
     <div className={style.container}>
       <Header
@@ -30,7 +34,6 @@ const App = () => {
       {curMovie && <MovieInfo info={curMovie} />}
       <MovieList
         setCurIndex={setCurIndex}
-        moviesList={moviesList}
         setSort={setSort}
         sort={sort}
       />
