@@ -3,25 +3,19 @@ import styles from "../../styles/list.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { useEffect } from "react";
-import { fetchMovies } from "../../store/movies/moviesSlice";
+import { fetchMovies, switchSort } from "../../store/movies/moviesSlice";
 
-const MovieList = (props: {
-  setSort: React.Dispatch<React.SetStateAction<ISort>>;
-  sort: ISort;
-}) => {
-  const { setSort, sort } = props;
-
+const MovieList = () => {
   const dispatch: AppDispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchMovies());
-  }, []);
-
+  //уверен можно лучше
   const moviesList = useSelector((state: RootState) => state.movies.list);
+  const sort = useSelector((state: RootState) => state.movies.sort);
+  const search = useSelector((state: RootState) => state.movies.search);
 
   const handleSort = (type: "name" | "year") => {
-    setSort({ type, asc: sort.type != type ? true : !sort.asc });
-  };
+    dispatch(switchSort(type))
+  }
 
   const sortByYear = () => handleSort("year");
   const sortByName = () => handleSort("name");
@@ -42,6 +36,11 @@ const MovieList = (props: {
 
   const arrowByYear = () => getDirArrow("year");
   const arrowByName = () => getDirArrow("name");
+
+  useEffect(() => {
+    dispatch(fetchMovies());
+  }, [sort, search]);
+
   if (moviesList) {
     return (
       <>

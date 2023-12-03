@@ -1,13 +1,12 @@
 import * as React from "react";
 import { useState } from "react";
 import style from "../styles/search.module.scss";
-import useMovies from "../hooks/useMovies";
+import { setSearch } from "../store/movies/moviesSlice";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../store";
 
-const Search = (props: {
-  setSearch: React.Dispatch<React.SetStateAction<ISearch>>;
-}) => {
-  const { setSearch } = props;
-
+const Search = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const [locSearch, setLocSearch] = useState<ISearch>({
     query: "",
     type: "name",
@@ -21,7 +20,7 @@ const Search = (props: {
   };
 
   const commitSearch = () => {
-    setSearch(locSearch);
+    dispatch(setSearch(locSearch));
   };
 
   const enterCommit = (e: React.KeyboardEvent<HTMLInputElement>) => {
