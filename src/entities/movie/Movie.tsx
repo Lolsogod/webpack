@@ -1,11 +1,12 @@
+import { useDispatch } from "react-redux";
 import styles from "../../styles/movie.module.scss";
+import { AppDispatch } from "../../store";
+import { setCurrent } from "../../store/movies/moviesSlice";
 
-const Movie = (props: {
-  info: IMovieInfo;
-  setCurIndex: React.Dispatch<React.SetStateAction<number>>;
-}) => {
-  const { info, setCurIndex } = props;
-  const selectMovie = () => setCurIndex(info.id)
+const Movie = (props: { info: IMovieInfo }) => {
+  const { info } = props;
+  const dispatch: AppDispatch = useDispatch();
+  const selectMovie = () => dispatch(setCurrent(info));
 
   return (
     <div onDoubleClick={selectMovie} className={styles.card}>

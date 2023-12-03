@@ -6,11 +6,10 @@ import { useEffect } from "react";
 import { fetchMovies } from "../../store/movies/moviesSlice";
 
 const MovieList = (props: {
-  setCurIndex: React.Dispatch<React.SetStateAction<number>>;
   setSort: React.Dispatch<React.SetStateAction<ISort>>;
   sort: ISort;
 }) => {
-  const { setCurIndex, setSort, sort } = props;
+  const { setSort, sort } = props;
 
   const dispatch: AppDispatch = useDispatch();
 
@@ -67,7 +66,7 @@ const MovieList = (props: {
 
         <div className={styles.list}>
           {moviesList.map((info) => (
-            <Movie setCurIndex={setCurIndex} key={info.id} info={info} />
+            <Movie key={info.id} info={info} />
           ))}
         </div>
       </>

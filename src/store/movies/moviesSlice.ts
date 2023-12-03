@@ -3,6 +3,7 @@ import axios from "axios";
 
 interface MoviesState {
   list: IMovieInfo[];
+  current: IMovieInfo | null;
 }
 
 export const fetchMovies = createAsyncThunk("movies/fetchMovies", async () => {
@@ -13,6 +14,7 @@ export const fetchMovies = createAsyncThunk("movies/fetchMovies", async () => {
 
 const initialState: MoviesState = {
   list: [],
+  current: null,
 };
 
 const MoviesSlice = createSlice({
@@ -23,7 +25,11 @@ const MoviesSlice = createSlice({
       state.list = action.payload;
     });
   },
-  reducers: {},
+  reducers: {
+    setCurrent(state, action) {
+      state.current = action.payload;
+    },
+  },
 });
-//export const {  } = MoviesSlice.actions
+export const { setCurrent } = MoviesSlice.actions;
 export default MoviesSlice.reducer;
