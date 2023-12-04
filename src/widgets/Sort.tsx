@@ -7,7 +7,7 @@ const Sort = () => {
   const { list, sort } = useSelector((state: RootState) => state.movies);
   const dispatch: AppDispatch = useDispatch();
 
-  //вынести сортировку в хук?
+  //вынести сортировку в хук или зарефакторить?
   const handleSort = (type: "name" | "year") => dispatch(switchSort(type));
 
   const sortByYear = () => handleSort("year");
@@ -15,7 +15,7 @@ const Sort = () => {
 
   const sortedStyle = (type: string) =>
     sort.type == type ? styles.sorted : "";
-
+    
   const styleByYear = () => sortedStyle("year");
   const styleByName = () => sortedStyle("name");
 
@@ -34,10 +34,10 @@ const Sort = () => {
       <span>{list.length} movies found</span>
       <div className={styles.sort}>
         <div>Sort By:</div>
-        <div className={`${styles.sorter} ${styleByYear}`} onClick={sortByYear}>
+        <div className={`${styles.sorter} ${styleByYear()}`} onClick={sortByYear}>
           release date {`${arrowByYear()}`}
         </div>
-        <div className={`${styles.sorter} ${styleByName}`} onClick={sortByName}>
+        <div className={`${styles.sorter} ${styleByName()}`} onClick={sortByName}>
           name {`${arrowByName()}`}
         </div>
       </div>

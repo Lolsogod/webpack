@@ -1,3 +1,16 @@
+.searchBtn {
+  font-size: large;
+  padding: 0 1rem;
+  line-height: 34px;
+  background-color: #a6ffb2;
+  color: black;
+  border: #a6ffb2 1px solid;
+  cursor: pointer;
+  &:active {
+    background-color: transparent;
+    color: #a6ffb2;
+  }
+}
 .search {
   display: flex;
   gap: 1rem;
@@ -10,13 +23,8 @@
   }
 
   .searchBtn {
-    font-size: large;
-    padding: 0 1rem;
-    line-height: 34px;
     color: #a6ffb2;
-    border: #a6ffb2 1px solid;
     background-color: transparent;
-    cursor: pointer;
     &:active {
       background-color: #a6ffb2;
       color: black;
@@ -48,3 +56,4 @@
     }
   }
 }
+

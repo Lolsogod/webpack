@@ -1,23 +1,11 @@
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../store";
 import style from "../styles/header.module.scss";
 import Search from "../widgets/Search";
-import { setCurrent } from "../store/movies/moviesSlice";
 
 const Header = () => {
-  const dispatch: AppDispatch = useDispatch();
-  const resetCurrent = () => dispatch(setCurrent(null));
-  const current = useSelector((state: RootState) => state.movies.current);
-
   return (
     <nav className={style.navBar}>
       <h1 className={style.logo}>CoolMovies</h1>
-      {!current && <Search />}
-      {current && (
-        <button className={style.searchBtn} onClick={resetCurrent}>
-          Search
-        </button>
-      )}
+      <Search />
     </nav>
   );
 };

@@ -1,33 +1,39 @@
 import * as React from "react";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../store";
 import style from "../styles/search.module.scss";
-import { setSearch } from "../store/movies/moviesSlice";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../store";
+import {
+  setCurrent,
+  setQuery,
+  setSearchType,
+  commitSearch,
+} from "../store/movies/moviesSlice";
 
 const Search = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const [locSearch, setLocSearch] = useState<ISearch>({
-    query: "",
-    type: "name",
-  });
+  const { current, locSearch } = useSelector((state: RootState) => state.movies);
 
-  const setQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLocSearch({ ...locSearch, query: e.target.value });
-  };
-  const setType = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLocSearch({ ...locSearch, type: e.target.value as "name" | "genere" });
-  };
+  const resetCurrent = () => dispatch(setCurrent(null));
 
-  const commitSearch = () => {
-    dispatch(setSearch(locSearch));
-  };
+  const handleQuery = (e: React.ChangeEvent<HTMLInputElement>) => 
+    dispatch(setQuery(e.target.value));
+
+  const handleCommit = () => dispatch(commitSearch());
+
+  const handleType = (e: React.ChangeEvent<HTMLInputElement>) => 
+    dispatch(setSearchType(e.target.value as "name" | "genere"));
 
   const enterCommit = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      commitSearch();
-    }
+    if (e.key === "Enter") handleCommit();
   };
+
+  if (current)
+    return (
+      <button className={style.searchBtn} onClick={resetCurrent}>
+        Search
+      </button>
+    );
   return (
     <div className={style.search}>
       <input
@@ -35,14 +41,14 @@ const Search = () => {
         type="text"
         placeholder="search..."
         value={locSearch.query}
-        onChange={setQuery}
+        onChange={handleQuery}
         onKeyDown={enterCommit}
       />
       <div className={style.radioGroup}>
         <div className={style.radioGroupItem}>
           <input
             className={style.hidden}
-            onChange={setType}
+            onChange={handleType}
             id="radio-1"
             type="radio"
             name="radio"
@@ -56,7 +62,7 @@ const Search = () => {
         <div className={style.radioGroupItem}>
           <input
             className={style.hidden}
-            onChange={setType}
+            onChange={handleType}
             id="radio-2"
             type="radio"
             name="radio"
@@ -68,7 +74,7 @@ const Search = () => {
           </label>
         </div>
       </div>
-      <button className={style.searchBtn} onClick={commitSearch}>
+      <button className={style.searchBtn} onClick={handleCommit}>
         Search
       </button>
     </div>
