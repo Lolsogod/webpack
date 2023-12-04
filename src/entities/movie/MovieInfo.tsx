@@ -4,6 +4,7 @@ import { RootState } from "../../store";
 
 const MovieInfo = () => {
   const current = useSelector((state: RootState) => state.movies.current);
+  
   if (!current) return null;
   return (
     <div className={styles.info}>
