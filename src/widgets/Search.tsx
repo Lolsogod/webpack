@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store";
 import style from "../styles/search.module.scss";
@@ -12,16 +11,18 @@ import {
 
 const Search = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { current, locSearch } = useSelector((state: RootState) => state.movies);
+  const { current, locSearch } = useSelector(
+    (state: RootState) => state.movies
+  );
 
   const resetCurrent = () => dispatch(setCurrent(null));
 
-  const handleQuery = (e: React.ChangeEvent<HTMLInputElement>) => 
+  const handleQuery = (e: React.ChangeEvent<HTMLInputElement>) =>
     dispatch(setQuery(e.target.value));
 
   const handleCommit = () => dispatch(commitSearch());
 
-  const handleType = (e: React.ChangeEvent<HTMLInputElement>) => 
+  const handleType = (e: React.ChangeEvent<HTMLInputElement>) =>
     dispatch(setSearchType(e.target.value as "name" | "genere"));
 
   const enterCommit = (e: React.KeyboardEvent<HTMLInputElement>) => {

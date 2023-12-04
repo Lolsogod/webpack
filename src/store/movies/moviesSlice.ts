@@ -1,13 +1,13 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "..";
-//вынести search и sort в одтельный слайс?
+//вынести search и sort в одтельные слайсы?
 interface MoviesState {
   list: IMovieInfo[];
   current: IMovieInfo | null;
   sort: ISort;
   search: ISearch;
-  locSearch: ISearch
+  locSearch: ISearch;
 }
 
 const buildUrl = (sort: ISort, search: ISearch) => {
@@ -34,7 +34,7 @@ const initialState: MoviesState = {
   current: null,
   sort: { type: "name", asc: true },
   search: { type: "name", query: "" },
-  locSearch: { type: "name", query: "" }
+  locSearch: { type: "name", query: "" },
 };
 
 const MoviesSlice = createSlice({

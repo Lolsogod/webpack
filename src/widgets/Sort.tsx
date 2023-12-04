@@ -15,7 +15,7 @@ const Sort = () => {
 
   const sortedStyle = (type: string) =>
     sort.type == type ? styles.sorted : "";
-    
+
   const styleByYear = () => sortedStyle("year");
   const styleByName = () => sortedStyle("name");
 
@@ -34,10 +34,16 @@ const Sort = () => {
       <span>{list.length} movies found</span>
       <div className={styles.sort}>
         <div>Sort By:</div>
-        <div className={`${styles.sorter} ${styleByYear()}`} onClick={sortByYear}>
+        <div
+          className={`${styles.sorter} ${styleByYear()}`}
+          onClick={sortByYear}
+        >
           release date {`${arrowByYear()}`}
         </div>
-        <div className={`${styles.sorter} ${styleByName()}`} onClick={sortByName}>
+        <div
+          className={`${styles.sorter} ${styleByName()}`}
+          onClick={sortByName}
+        >
           name {`${arrowByName()}`}
         </div>
       </div>

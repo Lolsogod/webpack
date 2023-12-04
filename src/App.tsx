@@ -5,12 +5,11 @@ import MovieList from "./entities/movie/MovieList";
 import MovieInfo from "./entities/movie/MovieInfo";
 
 const App = () => {
- 
   return (
     <div className={style.container}>
       <Header />
       <MovieInfo />
-      <MovieList/>
+      <MovieList />
       <Footer />
     </div>
   );

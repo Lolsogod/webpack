@@ -3,7 +3,7 @@ import styles from "../../styles/list.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { useEffect } from "react";
-import { commitSearch, fetchMovies, switchSort } from "../../store/movies/moviesSlice";
+import { fetchMovies } from "../../store/movies/moviesSlice";
 import Sort from "../../widgets/Sort";
 
 const MovieList = () => {
@@ -14,7 +14,7 @@ const MovieList = () => {
   );
 
   useEffect(() => {
-      dispatch(fetchMovies());
+    dispatch(fetchMovies());
   }, [sort, search]);
 
   if (list) {
