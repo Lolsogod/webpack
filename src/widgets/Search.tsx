@@ -1,54 +1,60 @@
 import * as React from "react";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../store";
 import style from "../styles/search.module.scss";
-import useMovies from "../hooks/useMovies";
+import {
+  setCurrent,
+  setQuery,
+  setSearchType,
+  commitSearch,
+} from "../store/movies/moviesSlice";
 
-const Search = (props: {
-  setSearch: React.Dispatch<React.SetStateAction<ISearch>>;
-}) => {
-  const { setSearch } = props;
+const Search = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { current, searchParams} = useSelector(
+    (state: RootState) => state.movies
+  );
 
-  const [locSearch, setLocSearch] = useState<ISearch>({
-    query: "",
-    type: "name",
-  });
+  const resetCurrent = () => dispatch(setCurrent(null));
 
-  const setQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLocSearch({ ...locSearch, query: e.target.value });
-  };
-  const setType = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLocSearch({ ...locSearch, type: e.target.value as "name" | "genere" });
-  };
+  const handleQuery = (e: React.ChangeEvent<HTMLInputElement>) =>
+    dispatch(setQuery(e.target.value));
 
-  const commitSearch = () => {
-    setSearch(locSearch);
-  };
+  const handleCommit = () => dispatch(commitSearch());
+
+  const handleType = (e: React.ChangeEvent<HTMLInputElement>) =>
+    dispatch(setSearchType(e.target.value as "name" | "genere"));
 
   const enterCommit = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      commitSearch();
-    }
+    if (e.key === "Enter") handleCommit();
   };
+
+  if (current)
+    return (
+      <button className={style.searchBtn} onClick={resetCurrent}>
+        Search
+      </button>
+    );
   return (
     <div className={style.search}>
       <input
         className={style.searchBar}
         type="text"
         placeholder="search..."
-        value={locSearch.query}
-        onChange={setQuery}
+        value={searchParams.query}
+        onChange={handleQuery}
         onKeyDown={enterCommit}
       />
       <div className={style.radioGroup}>
         <div className={style.radioGroupItem}>
           <input
             className={style.hidden}
-            onChange={setType}
+            onChange={handleType}
             id="radio-1"
             type="radio"
             name="radio"
             value="name"
-            checked={locSearch.type == "name"}
+            checked={searchParams.type == "name"}
           />
           <label className={style.radio} htmlFor="radio-1">
             Title
@@ -57,19 +63,19 @@ const Search = (props: {
         <div className={style.radioGroupItem}>
           <input
             className={style.hidden}
-            onChange={setType}
+            onChange={handleType}
             id="radio-2"
             type="radio"
             name="radio"
             value="genere"
-            checked={locSearch.type == "genere"}
+            checked={searchParams.type == "genere"}
           />
           <label className={style.radio} htmlFor="radio-2">
             Genere
           </label>
         </div>
       </div>
-      <button className={style.searchBtn} onClick={commitSearch}>
+      <button className={style.searchBtn} onClick={handleCommit}>
         Search
       </button>
     </div>

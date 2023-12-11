@@ -9,17 +9,4 @@
   .logo {
     margin: 0;
   }
-  .searchBtn {
-    font-size: large;
-    padding: 0 1rem;
-    line-height: 34px;
-    background-color: #a6ffb2;
-    color: black;
-    border: #a6ffb2 1px solid;
-    cursor: pointer;
-    &:active {
-      background-color: transparent;
-      color: #a6ffb2;
-    }
-  }
 }
