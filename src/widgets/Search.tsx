@@ -11,7 +11,7 @@ import {
 
 const Search = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { current, locSearch } = useSelector(
+  const { current, searchParams} = useSelector(
     (state: RootState) => state.movies
   );
 
@@ -41,7 +41,7 @@ const Search = () => {
         className={style.searchBar}
         type="text"
         placeholder="search..."
-        value={locSearch.query}
+        value={searchParams.query}
         onChange={handleQuery}
         onKeyDown={enterCommit}
       />
@@ -54,7 +54,7 @@ const Search = () => {
             type="radio"
             name="radio"
             value="name"
-            checked={locSearch.type == "name"}
+            checked={searchParams.type == "name"}
           />
           <label className={style.radio} htmlFor="radio-1">
             Title
@@ -68,7 +68,7 @@ const Search = () => {
             type="radio"
             name="radio"
             value="genere"
-            checked={locSearch.type == "genere"}
+            checked={searchParams.type == "genere"}
           />
           <label className={style.radio} htmlFor="radio-2">
             Genere
