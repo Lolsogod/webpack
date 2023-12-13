@@ -29,10 +29,14 @@ const initialState: AuthState = {
 
 export const register = createAsyncThunk(
   "auth/register",
-  async (payload: RegPayload) => {
-    return axios
-      .post("http://localhost:5000/users", payload)
-      .then((res: any) => res.data);
+  async (payload: RegPayload, thunkAPI) => {
+    const { email, login } = payload;
+    const existingUser = await axios.get("http://localhost:5000/users", {
+      params: { email, login },
+    });
+    if (existingUser.data.length > 0) 
+      return thunkAPI.rejectWithValue("User already exists");
+    return axios.post("http://localhost:5000/users", payload).then((res: any) => res.data);
   }
 );
 export const authenticate = createAsyncThunk(
@@ -42,7 +46,7 @@ export const authenticate = createAsyncThunk(
       .get("http://localhost:5000/users", {
         params: payload,
       })
-      .then((res: any) => {
+      .then((res) => {
         if (res.data && res.data.length > 0) {
           return res.data[0];
         } 
@@ -54,16 +58,14 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   extraReducers: (builder) => {
-    builder.addCase(register.fulfilled, (_, action) => {
-      console.log("register fulfilled", action.payload);
-    });
     builder.addCase(authenticate.fulfilled, (state, action) => {
-      console.log("authenticate fulfilled", action.payload);
       state.isAuthenticated = true;
       state.user = action.payload;
     });
     builder.addCase(authenticate.rejected, (_, action) => {
-      console.log("authenticate rejected", action.payload);
+      throw new Error(action.payload as string);
+    });
+    builder.addCase(register.rejected, (_, action) => {
       throw new Error(action.payload as string);
     });
   },

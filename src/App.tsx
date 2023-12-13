@@ -1,5 +1,3 @@
-import Header from "./layout/Header";
-import Footer from "./layout/Footer";
 import style from "./styles/main.module.scss";
 import { RouterProvider } from "react-router-dom";
 import router from "./router/router";

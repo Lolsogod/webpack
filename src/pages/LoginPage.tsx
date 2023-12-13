@@ -5,6 +5,7 @@ import { useState } from "react";
 import Button, { btnStyles } from "../ui/Button";
 import styles from "../styles/form.module.scss"
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 const LoginPage = () => {
   const dispatch: AppDispatch = useDispatch();
 
@@ -42,15 +43,15 @@ const LoginPage = () => {
   const handleAuth = (e: React.FormEvent) => {
     e.preventDefault();
     if (Object.values(errors).some((err) => err !== "")) {
-      alert("Fix all errors before submitting");
+      toast.error("Fix all errors before submitting");
       return;
     }
     if (Object.values(form).some((val) => val === "")) {
-      alert("Fill in all fields before submitting");
+      toast.error("Fill in all fields before submitting");
       return;
     }
     dispatch(authenticate(form))
-      .catch((err) => alert(err.message));
+      .catch((err) => toast.error(err.message));
   };
 
   return (

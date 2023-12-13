@@ -19,7 +19,6 @@ const Search = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    console.log(name, value)
     setForm({ ...form, [name]: value });
   }
   const resetCurrent = () => dispatch(setCurrent(null));

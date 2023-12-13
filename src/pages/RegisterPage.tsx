@@ -5,6 +5,7 @@ import { authenticate, register } from "../store/auth/authSlice";
 import Button, { btnStyles } from "../ui/Button";
 import styles from "../styles/form.module.scss"
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const RegisterPage = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -58,17 +59,17 @@ const RegisterPage = () => {
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
     if (Object.values(errors).some((err) => err !== "")) {
-      alert("Fix all errors before submitting");
+      toast.error("Fix all errors before submitting");
       return;
     }
     if (Object.values(form).some((val) => val === "")) {
-      alert("Fill in all fields before submitting");
+      toast.error("Fill in all fields before submitting");
       return;
     }
     dispatch(register({ email, login, password }))
       .then(() => {
         dispatch(authenticate({ login, password }));
-      });
+      }).catch((err) => toast.error(err.message));
   };
 
   return (
