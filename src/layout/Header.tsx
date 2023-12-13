@@ -18,13 +18,8 @@ const Header = () => {
       <h1 className={style.logo}>
         <Link to={"/"}>CoolMovies</Link>
       </h1>
-
-      {!isAuthenticated ?
+      {isAuthenticated &&
         <>
-          <Link className={btnStyles('ghost')} to="/login">Login</Link>
-          <Link className={btnStyles('ghost')} to="/register">Register</Link>
-        </>
-        : <>
           <Search />
           <Button variant="ghost" onClick={handleLogout}>Logout</Button>
         </>}

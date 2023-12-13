@@ -2,7 +2,9 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../store";
 import { authenticate } from "../store/auth/authSlice";
 import { useState } from "react";
-
+import Button, { btnStyles } from "../ui/Button";
+import styles from "../styles/form.module.scss"
+import { Link } from "react-router-dom";
 const LoginPage = () => {
   const dispatch: AppDispatch = useDispatch();
 
@@ -52,25 +54,31 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
+    <div className={styles.formContainer}>
+      <h1 className={styles.formTitle}>Login</h1>
       <form onSubmit={handleAuth}>
         <input
+          className={styles.formInput}
           type="text"
           placeholder="login"
           value={login}
           onChange={handleInputChange}
           name="login"
         />
-        {errors.login && <div>{errors.login}</div>}
+        {errors.login && <div className={styles.formError}>{errors.login}</div>}
         <input
+          className={styles.formInput}
           type="password"
           placeholder="password"
           value={password}
           onChange={handleInputChange}
           name="password"
         />
-        {errors.password && <div>{errors.password}</div>}
-        <button>Login</button>
+        {errors.password && <div className={styles.formError}>{errors.password}</div>}
+        <div className={styles.btnsContainer}>
+          <Link className={btnStyles("ghost")} to="/register">Create account</Link>
+          <Button>Login</Button>
+        </div>
       </form>
     </div>
   );
