@@ -2,7 +2,14 @@
 .search {
   display: flex;
   gap: 1rem;
-
+  .searchBar {
+    background-color: #1f1f1f;
+    font-size: larger;
+    padding: 5px;
+    padding-left: 10px;
+    border: 1px solid #a6ffb2;
+    color: white;
+  }
   .radioGroup {
     display: inline-block;
     overflow: hidden;

@@ -7,11 +7,11 @@ const Sort = () => {
   const { list, sort } = useSelector((state: RootState) => state.movies);
   const dispatch: AppDispatch = useDispatch();
 
-  //вынести сортировку в хук или зарефакторить?
-  const handleSort = (type: "name" | "year") => dispatch(switchSort(type));
-
-  const sortByYear = () => handleSort("year");
-  const sortByName = () => handleSort("name");
+  const handleSort = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const type = (e.nativeEvent as any).submitter.name  //странновато, но работает
+    dispatch(switchSort(type));
+  }
 
   const sortedStyle = (type: string) =>
     sort.type == type ? styles.sorted : "";
@@ -29,23 +29,24 @@ const Sort = () => {
   const arrowByYear = () => getDirArrow("year");
   const arrowByName = () => getDirArrow("name");
 
+ 
+
   return (
     <div className={styles.header}>
       <span>{list.length} movies found</span>
       <div className={styles.sort}>
         <div>Sort By:</div>
-        <div
-          className={`${styles.sorter} ${styleByYear()}`}
-          onClick={sortByYear}
-        >
-          release date {`${arrowByYear()}`}
-        </div>
-        <div
-          className={`${styles.sorter} ${styleByName()}`}
-          onClick={sortByName}
-        >
-          name {`${arrowByName()}`}
-        </div>
+        <form onSubmit={handleSort}>
+          <button className={`${styles.sorter} ${styleByYear()}`}
+            name="year">
+            release date {`${arrowByYear()}`}
+          </button>
+          <button
+            className={`${styles.sorter} ${styleByName()}`}
+            name="name"
+          >
+            name {`${arrowByName()}`}
+          </button></form>
       </div>
     </div>
   );

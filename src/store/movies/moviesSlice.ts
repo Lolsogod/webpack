@@ -7,7 +7,6 @@ interface MoviesState {
   current: IMovieInfo | null;
   sort: ISort;
   search: ISearch;
-  searchParams: ISearch;
 }
 
 const buildUrl = (sort: ISort, search: ISearch) => {
@@ -34,7 +33,6 @@ const initialState: MoviesState = {
   current: null,
   sort: { type: "name", asc: true },
   search: { type: "name", query: "" },
-  searchParams: { type: "name", query: "" },
 };
 
 const MoviesSlice = createSlice({
@@ -54,17 +52,11 @@ const MoviesSlice = createSlice({
       state.sort.type = type;
       state.sort.asc = type !== state.sort.type ? true : !state.sort.asc;
     },
-    setQuery(state, action: PayloadAction<string>) {
-      state.searchParams.query = action.payload;
-    },
-    setSearchType(state, action: PayloadAction<"name" | "genere">) {
-      state.searchParams.type = action.payload;
-    },
-    commitSearch(state) {
-      state.search = state.searchParams;
+    commitSearch(state, action: PayloadAction<ISearch>) {
+      state.search = action.payload;
     },
   },
 });
-export const { setCurrent, switchSort, setSearchType, setQuery, commitSearch } =
+export const { setCurrent, switchSort, commitSearch } =
   MoviesSlice.actions;
 export default MoviesSlice.reducer;

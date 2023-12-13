@@ -8,6 +8,11 @@
     gap: 1rem;
     user-select: none;
     .sorter {
+      background: none;
+      color: inherit;
+      border: none;
+      font: inherit;
+      outline: inherit;
       cursor: pointer;
       &:hover {
         color: #a6ffb2;
