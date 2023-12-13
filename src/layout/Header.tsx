@@ -4,13 +4,15 @@ import Search from "../widgets/Search";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
 import { logout } from "../store/auth/authSlice";
+import Button, { btnStyles } from "../ui/Button";
 
 const Header = () => {
   const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state: RootState) => state.auth);
-  const handleLogout = () => {
-    dispatch(logout());
-  }
+
+  const handleLogout = () => dispatch(logout())
+
+
   return (
     <nav className={style.navBar}>
       <h1 className={style.logo}>
@@ -19,12 +21,12 @@ const Header = () => {
 
       {!isAuthenticated ?
         <>
-          <Link to="/login">Login</Link>
-          <Link to="/register">Register</Link>
+          <Link className={btnStyles('ghost')} to="/login">Login</Link>
+          <Link className={btnStyles('ghost')} to="/register">Register</Link>
         </>
         : <>
           <Search />
-          <button onClick={handleLogout}>Logout</button>
+          <Button variant="ghost" onClick={handleLogout}>Logout</Button>
         </>}
     </nav>
   );

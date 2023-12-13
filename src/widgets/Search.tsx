@@ -8,6 +8,7 @@ import {
   setSearchType,
   commitSearch,
 } from "../store/movies/moviesSlice";
+import Button from "../ui/Button";
 
 const Search = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -31,9 +32,9 @@ const Search = () => {
 
   if (current)
     return (
-      <button className={style.searchBtn} onClick={resetCurrent}>
+      <Button onClick={resetCurrent}>
         Search
-      </button>
+      </Button>
     );
   return (
     <div className={style.search}>
@@ -75,9 +76,9 @@ const Search = () => {
           </label>
         </div>
       </div>
-      <button className={style.searchBtn} onClick={handleCommit}>
+      <Button variant="outline" onClick={handleCommit}>
         Search
-      </button>
+      </Button>
     </div>
   );
 };
