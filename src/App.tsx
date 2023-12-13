@@ -1,16 +1,13 @@
 import Header from "./layout/Header";
 import Footer from "./layout/Footer";
 import style from "./styles/main.module.scss";
-import MovieList from "./entities/movie/MovieList";
-import MovieInfo from "./entities/movie/MovieInfo";
+import { RouterProvider } from "react-router-dom";
+import router from "./router/router";
 
 const App = () => {
   return (
     <div className={style.container}>
-      <Header />
-      <MovieInfo />
-      <MovieList />
-      <Footer />
+      <RouterProvider router={router} />  
     </div>
   );
 };
