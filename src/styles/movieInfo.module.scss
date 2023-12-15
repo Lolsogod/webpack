@@ -1,24 +1,40 @@
-.info {
+.infoContainer {
   display: flex;
-  gap: 5rem;
-  padding: 1rem 5rem;
-  background-color: #181818;
-  justify-content: center;
-  .poster {
-    width: 400px;
-    height: 600px;
-  }
-  .textInfo {
-    width: 1000px;
+  justify-items: center;
+  align-items: center;
+  flex: 1;
+  .info {
     display: flex;
-    flex-direction: column;
-    .name {
-      display: inline-block;
-      font-size: 2rem;
-      margin: 0;
+    flex: 1;
+    gap: 5rem;
+    padding-top: 5vh;
+    justify-content: center;
+    .poster {
+      width: 400px;
+      height: 600px;
     }
-    .secondary {
-      color: gray;
+    .textInfo {
+      width: 1000px;
+      display: flex;
+      flex-direction: column;
+      .name {
+        display: inline-block;
+        font-size: 2rem;
+        margin: 0;
+      }
+      .secondary {
+        color: rgb(190, 190, 190);
+      }
+      .infoLabel {
+        color: #a6ffb2;
+      }
+      .description {
+        margin-top: 1rem;
+        line-height: 1.5;
+        .descriptionText{
+          margin-top: .2rem;
+        }
+      }
     }
   }
 }

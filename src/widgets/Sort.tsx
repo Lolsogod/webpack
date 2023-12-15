@@ -29,11 +29,9 @@ const Sort = () => {
   const arrowByYear = () => getDirArrow("year");
   const arrowByName = () => getDirArrow("name");
 
- 
-
   return (
     <div className={styles.header}>
-      <span>{list.length} movies found</span>
+      <span>{list.data.length} movies found</span>
       <div className={styles.sort}>
         <div>Sort By:</div>
         <form onSubmit={handleSort}>

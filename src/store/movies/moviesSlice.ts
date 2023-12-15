@@ -1,9 +1,8 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "..";
-//вынести search и sort в одтельные слайсы?
 interface MoviesState {
-  list: IMovieInfo[];
+  list: {data: IMovieInfo[], pending: boolean};
   current: {data: IMovieInfo | null, pending: boolean};
   sort: ISort;
   search: ISearch;
@@ -37,7 +36,7 @@ export const fetchMovies = createAsyncThunk(
 );
 
 const initialState: MoviesState = {
-  list: [],
+  list: {data: [], pending: false},
   current: {data: null, pending: false},
   sort: { type: "name", asc: true },
   search: { type: "name", query: "" },
@@ -48,7 +47,10 @@ const MoviesSlice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder.addCase(fetchMovies.fulfilled, (state, action) => {
-      state.list = action.payload;
+      state.list = {data: action.payload, pending: false};
+    });
+    builder.addCase(fetchMovies.pending, (state) => {
+      state.list = {data: [], pending: true};
     });
     builder.addCase(fetchMovie.fulfilled, (state, action) => {
       state.current = {data: action.payload, pending: false};
