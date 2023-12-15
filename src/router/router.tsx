@@ -1,12 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
-import MainPage from "../pages/MainPage";
-import RegisterPage from "../pages/RegisterPage";
-import LoginPage from "../pages/LoginPage";
-import Root from "../layout/Root";
+import MainPage from "@/pages/MainPage";
+import RegisterPage from "@/pages/RegisterPage";
+import LoginPage from "@/pages/LoginPage";
+import Root from "@/layout/Root";
 import Protected from "./Protected";
 import UnAuthed from "./UnAuthed";
-import NotFound from "../pages/NotFound";
-import MoviePage from "../pages/MoviePage";
+import NotFound from "@/pages/NotFound";
+import MoviePage from "@/pages/MoviePage";
 
 const router = createBrowserRouter([
     {

@@ -1,5 +1,5 @@
 import Movie from "./Movie";
-import styles from "../../styles/list.module.scss";
+import styles from "@/styles/list.module.scss";
 const MovieList = ({movies}: {movies: IMovieInfo[]}) => {
   
   return (

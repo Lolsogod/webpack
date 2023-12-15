@@ -1,5 +1,5 @@
 
-import styles from "../../styles/movie.module.scss";
+import styles from "@/styles/movie.module.scss";
 import { useNavigate } from "react-router-dom";
 
 const Movie = (props: { info: IMovieInfo }) => {

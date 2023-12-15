@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../store";
-import style from "../styles/search.module.scss";
-import { commitSearch } from "../store/movies/moviesSlice";
-import Button from "../ui/Button";
+import { AppDispatch, RootState } from "@/store";
+import style from "@/styles/search.module.scss";
+import { commitSearch } from "@/store/movies/moviesSlice";
+import Button from "@/ui/Button";
 import { useState } from "react";
 
 const Search = () => {

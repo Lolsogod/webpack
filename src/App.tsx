@@ -1,6 +1,6 @@
-import style from "./styles/main.module.scss";
+import style from "@/styles/main.module.scss";
 import { RouterProvider } from "react-router-dom";
-import router from "./router/router";
+import router from "@/router/router";
 
 const App = () => {
   return (

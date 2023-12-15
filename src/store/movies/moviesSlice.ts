@@ -1,6 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { RootState } from "..";
+import { RootState } from "@/store"
 interface MoviesState {
   list: {data: IMovieInfo[], pending: boolean};
   current: {data: IMovieInfo | null, pending: boolean};

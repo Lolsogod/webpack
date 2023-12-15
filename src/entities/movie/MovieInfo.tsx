@@ -1,6 +1,4 @@
-import { useSelector } from "react-redux";
-import styles from "../../styles/movieInfo.module.scss";
-import { RootState } from "../../store";
+import styles from "@/styles/movieInfo.module.scss";
 
 const MovieInfo = ({ movie }: { movie: IMovieInfo }) => {
   if (!movie) return null;

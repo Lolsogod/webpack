@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../store";
-import { switchSort } from "../store/movies/moviesSlice";
-import styles from "../styles/sort.module.scss";
+import { AppDispatch, RootState } from "@/store";
+import { switchSort } from "@/store/movies/moviesSlice";
+import styles from "@/styles/sort.module.scss";
 
 const Sort = () => {
   const { list, sort } = useSelector((state: RootState) => state.movies);

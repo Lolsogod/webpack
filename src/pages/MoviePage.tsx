@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useParams } from "react-router";
-import { AppDispatch, RootState } from "../store";
+import { AppDispatch, RootState } from "@/store";
 import NotFound from "./NotFound";
-import { fetchMovie } from "../store/movies/moviesSlice";
+import { fetchMovie } from "@/store/movies/moviesSlice";
 import { useEffect } from "react";
-import MovieInfo from "../entities/movie/MovieInfo";
-import Spinner from "../ui/Spinner";
+import MovieInfo from "@/entities/movie/MovieInfo";
+import Spinner from "@/ui/Spinner";
 
 const MoviePage = () => {
     let { id } = useParams<{ id: string }>();
