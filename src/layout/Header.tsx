@@ -12,7 +12,6 @@ const Header = () => {
 
   const handleLogout = () => dispatch(logout())
 
-
   return (
     <nav className={style.navBar}>
       <h1 className={style.logo}>

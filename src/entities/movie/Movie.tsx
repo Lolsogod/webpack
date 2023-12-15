@@ -11,7 +11,7 @@ const Movie = (props: { info: IMovieInfo }) => {
   };
 
   return (
-    <div onDoubleClick={handleDoubleClick} className={styles.card}>
+    <div onClick={handleDoubleClick} className={styles.card}>
       <img src={info.poster} className={styles.poster} alt="poster..." />
       <div className={styles.info}>
         <div className={styles.mainInfo}>
