@@ -1,15 +1,17 @@
-import { useDispatch } from "react-redux";
+
 import styles from "../../styles/movie.module.scss";
-import { AppDispatch } from "../../store";
-import { setCurrent } from "../../store/movies/moviesSlice";
+import { useNavigate } from "react-router-dom";
 
 const Movie = (props: { info: IMovieInfo }) => {
   const { info } = props;
-  const dispatch: AppDispatch = useDispatch();
-  const selectMovie = () => dispatch(setCurrent(info));
+  const navigate = useNavigate();
+
+  const handleDoubleClick = () => {
+    navigate(`/movie/${info.id}`);
+  };
 
   return (
-    <div onDoubleClick={selectMovie} className={styles.card}>
+    <div onDoubleClick={handleDoubleClick} className={styles.card}>
       <img src={info.poster} className={styles.poster} alt="poster..." />
       <div className={styles.info}>
         <div className={styles.mainInfo}>
