@@ -1,0 +1,37 @@
+.formContainer {
+    margin: 0 auto;
+    width: 400px;
+    padding-top: 5rem;
+
+    .formTitle {
+        margin: 0;
+    }
+    
+    .formInput {
+        background-color: #181818;;
+        box-sizing: border-box;
+        margin-top: 1rem;
+        width: 100%;
+        padding: 10px;
+        font-size: larger;
+        border: 1px solid #181818;;
+        color: white;
+        &:focus {
+            outline: none;
+            border: 1px solid #a6ffb2;
+        }
+    }
+    .formError{
+        margin-top: .5rem;
+        font-size: smaller;
+        color: rgb(255, 109, 109);
+    }
+    .btnsContainer{
+        margin-top: 1rem;
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+    }
+}
+
+

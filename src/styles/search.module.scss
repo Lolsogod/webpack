@@ -1,36 +1,15 @@
-.searchBtn {
-  font-size: large;
-  padding: 0 1rem;
-  line-height: 34px;
-  background-color: #a6ffb2;
-  color: black;
-  border: #a6ffb2 1px solid;
-  cursor: pointer;
-  &:active {
-    background-color: transparent;
-    color: #a6ffb2;
-  }
-}
+
 .search {
   display: flex;
   gap: 1rem;
-
   .searchBar {
-    height: 1rem;
-    width: 15rem;
-    padding: 0.5rem;
+    background-color: #1f1f1f;
     font-size: larger;
+    padding: 5px;
+    padding-left: 10px;
+    border: 1px solid #a6ffb2;
+    color: white;
   }
-
-  .searchBtn {
-    color: #a6ffb2;
-    background-color: transparent;
-    &:active {
-      background-color: #a6ffb2;
-      color: black;
-    }
-  }
-
   .radioGroup {
     display: inline-block;
     overflow: hidden;

@@ -90,5 +90,41 @@
       "descr": "A pragmatic U.S. Marine observes the dehumanizing effects the U.S.-Vietnam War has on his fellow recruits from their brutal boot camp training to the bloody street fighting in Hue.",
       "lenght": "1h 56m"
     }
+  ],
+  "users": [
+    {
+      "email": "teest",
+      "password": "test",
+      "id": 1
+    },
+    {
+      "email": "test",
+      "password": "test",
+      "id": 2
+    },
+    {
+      "email": "rayovsky@gmail.com",
+      "login": "JOE1",
+      "password": "12345678",
+      "id": 3
+    },
+    {
+      "email": "",
+      "login": "",
+      "password": "",
+      "id": 4
+    },
+    {
+      "email": "rayovsky@gmail.com",
+      "login": "L1",
+      "password": "12345678",
+      "id": 5
+    },
+    {
+      "email": "rayovsky@gmail.com",
+      "login": "LOGG",
+      "password": "asdf;ljk",
+      "id": 6
+    }
   ]
 }

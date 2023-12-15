@@ -1,0 +1,32 @@
+.btn {
+  text-decoration: none;
+  font-size: large;
+  padding: 0 1rem;
+  line-height: 34px;
+  background-color: #a6ffb2;
+  color: black;
+  border: #a6ffb2 1px solid;
+  cursor: pointer;
+  &:active {
+    background-color: transparent;
+    color: #a6ffb2;
+  }
+}
+
+.outline {
+  color: #a6ffb2;
+  background-color: transparent;
+  &:active {
+    background-color: #a6ffb2;
+    color: black;
+  }
+}
+.ghost {
+  border: 1px transparent solid;
+  color: #a6ffb2;
+  background-color: transparent;
+  &:active {
+    background-color: #a6ffb2;
+    color: black;
+  }
+}

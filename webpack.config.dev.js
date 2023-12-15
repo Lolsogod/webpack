@@ -7,6 +7,7 @@ module.exports = {
   output: {
     filename: "main.js",
     path: path.resolve(__dirname, "build"),
+    publicPath: '/'
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -37,6 +38,7 @@ module.exports = {
     extensions: ["*", ".js", ".ts", ".tsx"],
   },
   devServer: {
+    historyApiFallback: true,
     static: {
       directory: path.join(__dirname, "build"),
     },
