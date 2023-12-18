@@ -1,10 +1,9 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { RootState } from "..";
-//вынести search и sort в одтельные слайсы?
+import { RootState } from "@/store"
 interface MoviesState {
-  list: IMovieInfo[];
-  current: IMovieInfo | null;
+  list: {data: IMovieInfo[], pending: boolean};
+  current: {data: IMovieInfo | null, pending: boolean};
   sort: ISort;
   search: ISearch;
 }
@@ -16,6 +15,14 @@ const buildUrl = (sort: ISort, search: ISearch) => {
   return url;
 };
 
+export const fetchMovie = createAsyncThunk(
+  "movies/fetchMovie",
+  async (id: string) => {
+    return axios
+      .get<IMovieInfo>(`http://localhost:5000/movies/${id}`)
+      .then((res) => res.data);
+  }
+);
 export const fetchMovies = createAsyncThunk(
   "movies/fetchMovies",
   async (_, thunkAPI) => {
@@ -29,8 +36,8 @@ export const fetchMovies = createAsyncThunk(
 );
 
 const initialState: MoviesState = {
-  list: [],
-  current: null,
+  list: {data: [], pending: false},
+  current: {data: null, pending: false},
   sort: { type: "name", asc: true },
   search: { type: "name", query: "" },
 };
@@ -40,13 +47,22 @@ const MoviesSlice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder.addCase(fetchMovies.fulfilled, (state, action) => {
-      state.list = action.payload;
+      state.list = {data: action.payload, pending: false};
+    });
+    builder.addCase(fetchMovies.pending, (state) => {
+      state.list = {data: [], pending: true};
+    });
+    builder.addCase(fetchMovie.fulfilled, (state, action) => {
+      state.current = {data: action.payload, pending: false};
+    });
+    builder.addCase(fetchMovie.pending, (state) => {
+      state.current = {data: null, pending: true};
+    });
+    builder.addCase(fetchMovie.rejected, (state) => {
+      state.current = {data: null, pending: false};
     });
   },
   reducers: {
-    setCurrent(state, action: PayloadAction<IMovieInfo | null>) {
-      state.current = action.payload;
-    },
     switchSort(state, action: PayloadAction<"name" | "year">) {
       const type = action.payload;
       state.sort.type = type;
@@ -57,6 +73,6 @@ const MoviesSlice = createSlice({
     },
   },
 });
-export const { setCurrent, switchSort, commitSearch } =
+export const { switchSort, commitSearch } =
   MoviesSlice.actions;
 export default MoviesSlice.reducer;

@@ -1,12 +1,9 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../store";
-import style from "../styles/search.module.scss";
-import {
-  setCurrent,
-  commitSearch,
-} from "../store/movies/moviesSlice";
-import Button from "../ui/Button";
+import { AppDispatch, RootState } from "@/store";
+import style from "@/styles/search.module.scss";
+import { commitSearch } from "@/store/movies/moviesSlice";
+import Button from "@/ui/Button";
 import { useState } from "react";
 
 const Search = () => {
@@ -21,19 +18,12 @@ const Search = () => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   }
-  const resetCurrent = () => dispatch(setCurrent(null));
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(commitSearch(form));
   }
-
-  if (current)
-    return (
-      <Button onClick={resetCurrent}>
-        Search
-      </Button>
-    );
+  
   return (
     <form onSubmit={handleSearch} className={style.search}>
         <input

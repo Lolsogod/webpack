@@ -1,9 +1,9 @@
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../store";
-import { authenticate } from "../store/auth/authSlice";
+import { AppDispatch } from "@/store";
+import { authenticate } from "@/store/auth/authSlice";
 import { useState } from "react";
-import Button, { btnStyles } from "../ui/Button";
-import styles from "../styles/form.module.scss"
+import Button, { btnStyles } from "@/ui/Button";
+import styles from "@/styles/form.module.scss"
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 const LoginPage = () => {
