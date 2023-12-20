@@ -12,6 +12,7 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
 
+    "esModuleInterop": true,
     /* Linting */
     "strict": true,
     "noUnusedParameters": true,
@@ -19,7 +20,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "types": ["node", "jest", "@testing-library/jest-dom"]
   },
   "include": ["src"]
 }
