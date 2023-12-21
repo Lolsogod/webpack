@@ -9,8 +9,7 @@ test('renders Search component', async () => {
       <Search />
     </Provider>
   );
-
-  // Check if the input field is in the document
+  
   const inputElement = screen.getByRole('textbox');
   expect(inputElement).toBeInTheDocument();
 });

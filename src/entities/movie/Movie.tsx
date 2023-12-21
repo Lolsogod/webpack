@@ -6,12 +6,12 @@ const Movie = (props: { info: IMovieInfo }) => {
   const { info } = props;
   const navigate = useNavigate();
 
-  const handleDoubleClick = () => {
+  const handleClick = () => {
     navigate(`/movie/${info.id}`);
   };
 
   return (
-    <div onClick={handleDoubleClick} className={styles.card}>
+    <div onClick={handleClick} className={styles.card} data-testid="movie">
       <img src={info.poster} className={styles.poster} alt="poster..." />
       <div className={styles.info}>
         <div className={styles.mainInfo}>

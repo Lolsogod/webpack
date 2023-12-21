@@ -1,53 +1,39 @@
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
+import { configureStore } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { register, authenticate } from './authSlice';
-
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
+import authReducer, { authenticate, register, logout } from '@/store/auth/authSlice';
+import { AppDispatch, RootState } from '@/store';
+import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore';
 
 jest.mock('axios');
 
-describe('authSlice', () => {
-  afterEach(() => {
-    jest.clearAllMocks();
+describe('auth reducer', () => {
+  let store: ToolkitStore<RootState["auth"]>;
+
+  beforeEach(() => {
+    store = configureStore({
+      reducer: authReducer,
+    });
   });
 
-  test('creates auth/register fulfilled when registration has been done', async () => {
-    const regPayload = {
-      email: 'test@test.com',
-      login: 'testuser',
-      password: 'testpassword',
+  it('should handle initial state', () => {
+    const expected = {
+      isAuthenticated: false,
+      user: null,
     };
-
-    (axios.post as jest.Mock).mockResolvedValueOnce({ data: regPayload });
-
-    const expectedActions = [
-      { type: 'auth/register/pending' },
-      { type: 'auth/register/fulfilled', payload: regPayload }
-    ];
-    const store = mockStore({ auth: { isAuthenticated: false, user: null } });
-
-    await store.dispatch(register(regPayload));
-    expect(store.getActions()).toEqual(expectedActions);
+    expect(store.getState()).toEqual(expected);
   });
 
-  test('creates auth/authenticate fulfilled when authentication has been done', async () => {
-    const authPayload = {
-      login: 'testuser',
-      password: 'testpassword',
-    };
+  it('should handle authenticate.fulfilled', async () => {
+    const mockUser = { login: 'TEST1', password: '123456789' };
+    (axios.get as jest.Mock).mockResolvedValueOnce({ data: [mockUser] });
+    const dispatch: AppDispatch = store.dispatch;
+    await dispatch(authenticate(mockUser));
+    expect(store.getState()).toEqual({ isAuthenticated: true, user: mockUser });
+  });
 
-    axios.post.mockResolvedValueOnce({ data: authPayload });
-
-    const expectedActions = [
-      { type: 'auth/authenticate/pending' },
-      { type: 'auth/authenticate/fulfilled', payload: authPayload }
-    ];
-    const store = mockStore({ auth: { isAuthenticated: false, user: null } });
-
-    await store.dispatch(authenticate(authPayload));
-    expect(store.getActions()).toEqual(expectedActions);
+  it('should handle logout', () => {
+    const dispatch: AppDispatch = store.dispatch;
+    dispatch(logout());
+    expect(store.getState()).toEqual({ isAuthenticated: false, user: null });
   });
 });
-

@@ -10,7 +10,6 @@ test('renders Sort component', () => {
     </Provider>
   );
 
-  // Check if the component is in the document
   const sortElement = screen.getByText(/Sort By:/i);
   expect(sortElement).toBeInTheDocument();
 });

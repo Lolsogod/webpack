@@ -1,11 +1,10 @@
 import styles from "@/styles/movieInfo.module.scss";
 
 const MovieInfo = ({ movie }: { movie: IMovieInfo }) => {
-  if (!movie) return null;
   return (
     <div className={styles.infoContainer}>
       <div className={styles.info}>
-        <img className={styles.poster} src={movie.poster} alt="" />
+        <img className={styles.poster} src={movie.poster} alt="poster" />
         <div className={styles.textInfo}>
           <h2 className={styles.name}>{movie.name}</h2>
           <span className={styles.secondary}>
