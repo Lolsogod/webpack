@@ -9,7 +9,6 @@ describe('<LoginPage>', () => {
     render(
       <Provider store={store}>
         <BrowserRouter><LoginPage /></BrowserRouter>
-        
       </Provider>
     );
   });
@@ -26,7 +25,7 @@ describe('<LoginPage>', () => {
 
   test('updates login and password fields on change', () => {
     const loginInput: HTMLInputElement = screen.getByPlaceholderText('login');
-    const passwordInput: HTMLInputElement  = screen.getByPlaceholderText('password');
+    const passwordInput: HTMLInputElement = screen.getByPlaceholderText('password');
 
     fireEvent.change(loginInput, { target: { value: 'testuser' } });
     fireEvent.change(passwordInput, { target: { value: 'testpassword' } });
