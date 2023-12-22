@@ -125,6 +125,12 @@
       "login": "LOGG",
       "password": "asdf;ljk",
       "id": 6
+    },
+    {
+      "email": "joj@mail.ru",
+      "login": "VALID",
+      "password": "12345678",
+      "id": 7
     }
   ]
 }

@@ -34,7 +34,7 @@ const Sort = () => {
       <span>{list.data.length} movies found</span>
       <div className={styles.sort}>
         <div>Sort By:</div>
-        <form onSubmit={handleSort}>
+        <form onSubmit={handleSort} role="form">
           <button className={`${styles.sorter} ${styleByYear()}`}
             name="year">
             release date {`${arrowByYear()}`}

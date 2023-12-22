@@ -25,7 +25,7 @@ const Search = () => {
   }
   
   return (
-    <form onSubmit={handleSearch} className={style.search}>
+    <form onSubmit={handleSearch} className={style.search} role="form">
         <input
           className={style.searchBar}
           type="text"
