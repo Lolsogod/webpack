@@ -7,7 +7,6 @@ import authReducer, {
 } from "@/store/auth/authSlice";
 import { AppDispatch, RootState } from "@/store";
 import { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
-import { waitFor } from "@testing-library/dom";
 
 jest.mock("axios");
 

@@ -4,18 +4,17 @@ import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { authReducer } from '@/store/auth/authSlice';
 import UnAuthed from '@/router/UnAuthed';
-
+import {authed, unauthed} from '@/__mocks__/storeMocks';
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   Navigate: () => <div>Navigate Component</div>,
 }));
 
 describe('UnAuthed', () => {
-  test('renders children when isAuthenticated is false', () => {
-    const store = configureStore({
-      reducer: { auth: authReducer },
-      preloadedState: { auth: { isAuthenticated: false, user: null } }
-    });
+  let store: any;
+  const renderWithState = (state: any) => {
+    store = configureStore(state);
+    store.dispatch = jest.fn();
 
     render(
       <Provider store={store}>
@@ -26,26 +25,14 @@ describe('UnAuthed', () => {
         </BrowserRouter>
       </Provider>
     );
-
+  }
+  test('renders children when isAuthenticated is false', () => {
+    renderWithState(unauthed);
     expect(screen.getByText('Unauthenticated content')).toBeInTheDocument();
   });
 
   test('redirects to home when isAuthenticated is true', () => {
-    const store = configureStore({
-      reducer: { auth: authReducer },
-      preloadedState: { auth: { isAuthenticated: true, user: null } }
-    });
-
-    render(
-      <Provider store={store}>
-        <BrowserRouter>
-          <UnAuthed>
-            <div>Unauthenticated content</div>
-          </UnAuthed>
-        </BrowserRouter>
-      </Provider>
-    );
-
+    renderWithState(authed);
     expect(screen.queryByText('Unauthenticated content')).not.toBeInTheDocument();
     expect(screen.getByText('Navigate Component')).toBeInTheDocument();
   });
