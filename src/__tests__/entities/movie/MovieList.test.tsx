@@ -1,14 +1,15 @@
 import { render, screen } from '@testing-library/react';
 import MovieList from '@/entities/movie/MovieList';
 import mockMovieList from '@/__mocks__/mockMovieList';
-import { MemoryRouter } from 'react-router-dom';
-describe('<MovieList>', () => {
+import { TestWrapper } from '@/__mocks__/TestWrapper';
 
+describe('<MovieList>', () => {
   beforeEach(() => {
     render(
-      <MemoryRouter initialEntries={[`/`]}>
+      <TestWrapper>
         <MovieList movies={mockMovieList} />
-      </MemoryRouter>);
+      </TestWrapper>
+    );
   });
 
   test('renders correct number of Movie components', () => {

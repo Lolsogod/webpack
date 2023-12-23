@@ -1,10 +1,9 @@
 import { render, fireEvent, screen, waitFor } from '@testing-library/react';
-import { Provider } from 'react-redux';
 import RegisterPage from '@/pages/RegisterPage';
-import { BrowserRouter } from 'react-router-dom';
-import { register, authenticate, authReducer } from '@/store/auth/authSlice';
+import { register, authReducer } from '@/store/auth/authSlice';
 import { toast } from 'react-toastify';
 import { configureStore } from '@reduxjs/toolkit';
+import { TestWrapper } from '@/__mocks__/TestWrapper';
 jest.mock('react-toastify', () => ({
   toast: {
     error: jest.fn(),
@@ -30,14 +29,12 @@ describe('RegisterPage', () => {
     });
     store.dispatch = jest.fn().mockReturnValue(Promise.resolve());
     render(
-      <Provider store={store}>
-        <BrowserRouter>
-          <RegisterPage />
-        </BrowserRouter>
-      </Provider>
+      <TestWrapper store={store}>
+        <RegisterPage />
+      </TestWrapper>
     );
     elements = {
-      emailInput: screen.getByPlaceholderText('email'), 
+      emailInput: screen.getByPlaceholderText('email'),
       loginInput: screen.getByPlaceholderText('login'),
       passwordInput: screen.getByPlaceholderText('password'),
       repeatPasswordInput: screen.getByPlaceholderText('repeat password'),

@@ -1,12 +1,9 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import Header from '@/layout/Header';
-import { MemoryRouter } from 'react-router-dom';
 import { logout } from '@/store/auth/authSlice';
 import { unauthed, authed } from '@/__mocks__/storeMocks';
-
-
+import { TestWrapper } from '@/__mocks__/TestWrapper';
 
 describe('Header', () => {
   jest.mock('@/store/auth/authSlice', () => ({
@@ -17,13 +14,10 @@ describe('Header', () => {
   const renderWithState = (state: any) => {
     store = configureStore(state);
     store.dispatch = jest.fn();
-
     render(
-      <Provider store={store}>
-        <MemoryRouter>
+      <TestWrapper store={store}>
           <Header />
-        </MemoryRouter>
-      </Provider>
+      </TestWrapper>
     );
   }
 

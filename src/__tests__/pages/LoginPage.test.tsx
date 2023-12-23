@@ -1,18 +1,16 @@
-import { render, fireEvent, screen, waitFor } from '@testing-library/react';
-import { Provider } from 'react-redux';
-
+import { render, fireEvent, screen } from '@testing-library/react';
 import LoginPage from '@/pages/LoginPage';
-import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { configureStore } from '@reduxjs/toolkit';
-import { authReducer } from '@/store/auth/authSlice';
+import { TestWrapper } from '@/__mocks__/TestWrapper';
+import { unauthed } from '@/__mocks__/storeMocks';
+
 jest.mock('react-toastify', () => ({
   toast: {
     error: jest.fn(),
   },
 }));
 describe('<LoginPage>', () => {
-
   let store: any;
   let elements: {
     loginInput: HTMLInputElement;
@@ -20,16 +18,12 @@ describe('<LoginPage>', () => {
     submitButton: HTMLElement;
   };
   beforeEach(() => {
-    store = configureStore({
-      reducer: {
-        auth: authReducer,
-      },
-    });
+    store = configureStore(unauthed);
     store.dispatch = jest.fn().mockReturnValue(Promise.resolve());
     render(
-      <Provider store={store}>
-        <BrowserRouter><LoginPage /></BrowserRouter>
-      </Provider>
+      <TestWrapper store={store}>
+        <LoginPage />
+      </TestWrapper>
     );
     elements = {
       loginInput: screen.getByPlaceholderText('login'),

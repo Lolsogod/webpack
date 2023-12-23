@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import MovieInfo from '@/entities/movie/MovieInfo';
 import mockMovie from '@/__mocks__/mockMovie';
+
 describe('<MovieInfo>', () => {
   beforeEach(() => {
     render(<MovieInfo movie={mockMovie} />);

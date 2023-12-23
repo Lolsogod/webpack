@@ -8,7 +8,6 @@ import { useState } from "react";
 
 const Search = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { current } = useSelector((state: RootState) => state.movies);
   const [form, setForm] = useState({
     query: "",
     type: "name" as "name" | "genere",

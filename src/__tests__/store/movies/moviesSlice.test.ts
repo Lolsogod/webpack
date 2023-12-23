@@ -6,6 +6,8 @@ import moviesReducer, {
   commitSearch,
   switchSort,
 } from "@/store/movies/moviesSlice";
+import mockMovieList from "@/__mocks__/mockMovieList";
+import mockMovie from "@/__mocks__/mockMovie";
 
 jest.mock("axios");
 interface MoviesState {
@@ -43,20 +45,15 @@ describe("movies reducer", () => {
   });
 
   test("should handle fetchMovies.fulfilled", async () => {
-    const mockMovies = [
-      { id: "1", name: "Movie 1" },
-      { id: "2", name: "Movie 2" },
-    ];
-    (axios.get as jest.Mock).mockResolvedValueOnce({ data: mockMovies });
+    (axios.get as jest.Mock).mockResolvedValueOnce({ data: mockMovieList });
 
     await store.dispatch(fetchMovies());
 
-    expect(store.getState().movies.list.data).toEqual(mockMovies);
+    expect(store.getState().movies.list.data).toEqual(mockMovieList);
     expect(store.getState().movies.list.pending).toEqual(false);
   });
 
   test("should handle fetchMovie.fulfilled", async () => {
-    const mockMovie = { id: "1", name: "Movie 1" };
     (axios.get as jest.Mock).mockResolvedValueOnce({ data: mockMovie });
 
     await store.dispatch(fetchMovie("1"));

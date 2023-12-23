@@ -75,4 +75,5 @@ const MoviesSlice = createSlice({
 });
 export const { switchSort, commitSearch } =
   MoviesSlice.actions;
+
 export default MoviesSlice.reducer;

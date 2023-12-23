@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { store } from '@/store';
 import Search from '@/widgets/Search';
 import { commitSearch } from '@/store/movies/moviesSlice';
+import { TestWrapper } from '@/__mocks__/TestWrapper';
 
 const mockDispatch = jest.fn();
 jest.mock('react-redux', () => ({
@@ -12,9 +13,9 @@ jest.mock('react-redux', () => ({
 
 test('renders Search component', async () => {
   render(
-    <Provider store={store}>
+    <TestWrapper store={store}>
       <Search />
-    </Provider>
+    </TestWrapper>
   );
 
   const inputElement = screen.getByRole('textbox');

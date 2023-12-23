@@ -1,30 +1,20 @@
 import { render, screen } from '@testing-library/react';
-import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import MainPage from '@/pages/MainPage';
+import { TestWrapper } from '@/__mocks__/TestWrapper';
+import { authed } from '@/__mocks__/storeMocks';
 
 const mockStore = configureStore([thunk]);
 
 describe('<MainPage>', () => {
   let store;
-
   beforeEach(() => {
-    store = mockStore({
-      movies: {
-        list: {
-          pending: false,
-          data: []
-        },
-        sort: 'asc',
-        search: ''
-      }
-    });
-
+    store = mockStore(authed.preloadedState);
     render(
-      <Provider store={store}>
+      <TestWrapper store={store}>
         <MainPage />
-      </Provider>
+      </TestWrapper>
     );
   });
 

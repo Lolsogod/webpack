@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import { Provider } from 'react-redux';
 import Sort from '@/widgets/Sort';
-import { switchSort } from '@/store/movies/moviesSlice';
 import { fireEvent } from '@testing-library/react';
+import { switchSort } from '@/store/movies/moviesSlice';
 import { store } from '@/store';
+import { TestWrapper } from '@/__mocks__/TestWrapper';
 
 interface CustomEvent extends Event {
   submitter: any;
@@ -18,9 +18,9 @@ describe('Sort', () => {
   beforeEach(() => {
     store.dispatch = jest.fn().mockReturnValue(Promise.resolve());
     render(
-      <Provider store={store}>
+      <TestWrapper store={store}>
         <Sort />
-      </Provider>
+      </TestWrapper>
     );
   });
 

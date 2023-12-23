@@ -1,10 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import Protected from '@/router/Protected';
-import { MemoryRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
-import { authReducer } from '@/store/auth/authSlice';
 import { authed, unauthed } from '@/__mocks__/storeMocks';
+import { TestWrapper } from '@/__mocks__/TestWrapper';
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -17,13 +15,11 @@ describe('Protected', () => {
     store.dispatch = jest.fn();
 
     render(
-      <Provider store={store}>
-        <MemoryRouter>
+      <TestWrapper store={store}>
           <Protected>
             <div>Protected content</div>
           </Protected>
-        </MemoryRouter>
-      </Provider>
+        </TestWrapper>
     );
   }
   test('renders children when isAuthenticated is true', () => {

@@ -2,9 +2,9 @@ import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
-import { authReducer } from '@/store/auth/authSlice';
 import UnAuthed from '@/router/UnAuthed';
 import {authed, unauthed} from '@/__mocks__/storeMocks';
+import { TestWrapper } from '@/__mocks__/TestWrapper';
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   Navigate: () => <div>Navigate Component</div>,
@@ -17,13 +17,11 @@ describe('UnAuthed', () => {
     store.dispatch = jest.fn();
 
     render(
-      <Provider store={store}>
-        <BrowserRouter>
+      <TestWrapper store={store}>
           <UnAuthed>
             <div>Unauthenticated content</div>
           </UnAuthed>
-        </BrowserRouter>
-      </Provider>
+        </TestWrapper>
     );
   }
   test('renders children when isAuthenticated is false', () => {

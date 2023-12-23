@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
 import Movie from '@/entities/movie/Movie';
 import mockMovie from '@/__mocks__/mockMovie';
+import { TestWrapper } from '@/__mocks__/TestWrapper';
 
 let mockNavigate = jest.fn();
 
@@ -13,17 +13,17 @@ jest.mock('react-router-dom', () => ({
 describe('Movie', () => {
   beforeEach(() => {
     mockNavigate = jest.fn();
-
     render(
-      <MemoryRouter initialEntries={[`/`]}>
+      <TestWrapper>
         <Movie info={mockMovie} />
-      </MemoryRouter>
+      </TestWrapper>
     );
   });
+
   test('renders movie card with correct information', () => {
-    expect(screen.getByText('Test Movie')).toBeInTheDocument();
-    expect(screen.getByText('2022')).toBeInTheDocument();
-    expect(screen.getByText('Test Genere')).toBeInTheDocument();
+    expect(screen.getByText(mockMovie.name)).toBeInTheDocument();
+    expect(screen.getByText(mockMovie.year)).toBeInTheDocument();
+    expect(screen.getByText(mockMovie.genere)).toBeInTheDocument();
     expect(screen.getByAltText('poster...')).toHaveAttribute('src', 'test-poster');
   });
 
