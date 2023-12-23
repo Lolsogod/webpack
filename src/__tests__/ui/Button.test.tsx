@@ -2,12 +2,12 @@ import { render, fireEvent } from '@testing-library/react';
 import Button from '@/ui/Button';
 
 describe('Button', () => {
-  it('renders without crashing', () => {
+  test('renders without crashing', () => {
     const { getByText } = render(<Button>Test Button</Button>);
     expect(getByText('Test Button')).toBeInTheDocument();
   });
 
-  it('calls onClick prop when clicked', () => {
+  test('calls onClick prop when clicked', () => {
     const handleClick = jest.fn();
     const { getByText } = render(<Button onClick={handleClick}>Test Button</Button>);
 
@@ -15,7 +15,7 @@ describe('Button', () => {
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
-  it('applies correct styles based on variant prop', () => {
+  test('applies correct styles based on variant prop', () => {
     const { getByText, rerender } = render(<Button variant="outline">Test Button</Button>);
     expect(getByText('Test Button')).toHaveClass('btn', 'outline');
 

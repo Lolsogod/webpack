@@ -4,13 +4,13 @@ import moviesReducer, {
   fetchMovies,
   fetchMovie,
   commitSearch,
-  switchSort
+  switchSort,
 } from "@/store/movies/moviesSlice";
 
 jest.mock("axios");
 interface MoviesState {
-  list: {data: IMovieInfo[], pending: boolean};
-  current: {data: IMovieInfo | null, pending: boolean};
+  list: { data: IMovieInfo[]; pending: boolean };
+  current: { data: IMovieInfo | null; pending: boolean };
   sort: ISort;
   search: ISearch;
 }
@@ -25,7 +25,7 @@ describe("movies reducer", () => {
     });
   });
 
-  it("should handle initial state", () => {
+  test("should handle initial state", () => {
     const expected = {
       list: { data: [], pending: false },
       current: { data: null, pending: false },
@@ -35,11 +35,14 @@ describe("movies reducer", () => {
     expect(store.getState().movies).toEqual(expected);
   });
 
-  it("should handle switchSort", () => {
+  test("should handle switchSort", () => {
+    console.log(store.getState().movies.sort);
     store.dispatch(switchSort("year"));
     expect(store.getState().movies.sort.type).toEqual("year");
+    console.log(store.getState().movies.sort);
   });
-  it("should handle fetchMovies.fulfilled", async () => {
+
+  test("should handle fetchMovies.fulfilled", async () => {
     const mockMovies = [
       { id: "1", name: "Movie 1" },
       { id: "2", name: "Movie 2" },
@@ -52,7 +55,7 @@ describe("movies reducer", () => {
     expect(store.getState().movies.list.pending).toEqual(false);
   });
 
-  it("should handle fetchMovie.fulfilled", async () => {
+  test("should handle fetchMovie.fulfilled", async () => {
     const mockMovie = { id: "1", name: "Movie 1" };
     (axios.get as jest.Mock).mockResolvedValueOnce({ data: mockMovie });
 
@@ -62,26 +65,41 @@ describe("movies reducer", () => {
     expect(store.getState().movies.current.pending).toEqual(false);
   });
 
-  it("should handle commitSearch", () => {
+  test("should handle commitSearch", () => {
     const search: ISearch = { type: "name", query: "Movie 1" };
     store.dispatch(commitSearch(search));
 
     expect(store.getState().movies.search).toEqual(search);
   });
-  //somehow not covering brabch...
-  test('sets sort.asc to true when type is different from sort.type', () => {
+
+  test("sets sort.asc to true when type is different from sort.type", () => {
     const initialState: MoviesState = {
-      list: {data: [], pending: false},
-      current: {data: null, pending: false},
-      search: {type: "name", query: ""},
+      list: { data: [], pending: false },
+      current: { data: null, pending: false },
+      search: { type: "name", query: "" },
       sort: {
-        type: 'name',
-        asc: false,
+        type: "name",
+        asc: true,
       },
     };
-    const action = switchSort('name'); 
+    const action = switchSort("year");
     const nextState = moviesReducer(initialState, action);
-    
+
     expect(nextState.sort.asc).toBe(true);
+  });
+  test("sets sort.asc switch when type is same as sort.type", () => {
+    const initialState: MoviesState = {
+      list: { data: [], pending: false },
+      current: { data: null, pending: false },
+      search: { type: "name", query: "" },
+      sort: {
+        type: "name",
+        asc: true,
+      },
+    };
+    const action = switchSort("name");
+    const nextState = moviesReducer(initialState, action);
+
+    expect(nextState.sort.asc).toBe(false);
   });
 });

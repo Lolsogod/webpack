@@ -5,10 +5,10 @@ import Search from '@/widgets/Search';
 import { commitSearch } from '@/store/movies/moviesSlice';
 
 const mockDispatch = jest.fn();
-  jest.mock('react-redux', () => ({
-    ...jest.requireActual('react-redux'),
-    useDispatch: () => mockDispatch,
-  }));
+jest.mock('react-redux', () => ({
+  ...jest.requireActual('react-redux'),
+  useDispatch: () => mockDispatch,
+}));
 
 test('renders Search component', async () => {
   render(
@@ -16,7 +16,7 @@ test('renders Search component', async () => {
       <Search />
     </Provider>
   );
-  
+
   const inputElement = screen.getByRole('textbox');
   expect(inputElement).toBeInTheDocument();
 

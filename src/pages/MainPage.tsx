@@ -19,7 +19,7 @@ const MainPage = () => {
   return (
     <>
       <Sort />
-      {list.pending && <Spinner />}
+      {list.data.length == 0 && <Spinner />}
       <MovieList movies={list.data} />
     </>
   );

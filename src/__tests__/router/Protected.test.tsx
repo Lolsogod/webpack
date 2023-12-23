@@ -10,7 +10,7 @@ jest.mock('react-router-dom', () => ({
   Navigate: () => <div>Navigate Component</div>,
 }));
 describe('Protected', () => {
-  
+
   test('renders children when isAuthenticated is true', () => {
     const store = configureStore({
       reducer: { auth: authReducer },
