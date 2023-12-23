@@ -1,9 +1,10 @@
-import { render, screen } from '@testing-library/react';
 import Sort from '@/widgets/Sort';
+import { render, screen } from '@testing-library/react';
 import { fireEvent } from '@testing-library/react';
 import { switchSort } from '@/store/movies/moviesSlice';
-import { store } from '@/store';
 import { TestWrapper } from '@/__mocks__/TestWrapper';
+import { authed } from '@/__mocks__/storeMocks';
+import configureStore from 'redux-mock-store'
 
 interface CustomEvent extends Event {
   submitter: any;
@@ -15,7 +16,10 @@ function customFireEvent(element: Node | Window, event: string, data: { submitte
   fireEvent(element, nativeEvent);
 }
 describe('Sort', () => {
+  let mockstore: any = configureStore();
+  let store: any;
   beforeEach(() => {
+    store = mockstore(authed);
     store.dispatch = jest.fn().mockReturnValue(Promise.resolve());
     render(
       <TestWrapper store={store}>

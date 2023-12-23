@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { configureStore } from '@reduxjs/toolkit';
+import configureStore from 'redux-mock-store'
 import Header from '@/layout/Header';
 import { logout } from '@/store/auth/authSlice';
 import { unauthed, authed } from '@/__mocks__/storeMocks';
@@ -10,9 +10,10 @@ describe('Header', () => {
     logout: jest.fn(),
   }));
   
+  let mockstore: any = configureStore();
   let store: any;
   const renderWithState = (state: any) => {
-    store = configureStore(state);
+    store = mockstore(state);
     store.dispatch = jest.fn();
     render(
       <TestWrapper store={store}>

@@ -1,9 +1,9 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { store } from '@/store';
 import Search from '@/widgets/Search';
 import { commitSearch } from '@/store/movies/moviesSlice';
 import { TestWrapper } from '@/__mocks__/TestWrapper';
+import configureStore from 'redux-mock-store'
+import { authed } from '@/__mocks__/storeMocks';
 
 const mockDispatch = jest.fn();
 jest.mock('react-redux', () => ({
@@ -12,6 +12,8 @@ jest.mock('react-redux', () => ({
 }));
 
 test('renders Search component', async () => {
+  let mockstore: any = configureStore();
+  let store = mockstore(authed)
   render(
     <TestWrapper store={store}>
       <Search />

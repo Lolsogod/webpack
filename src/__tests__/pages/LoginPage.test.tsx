@@ -1,7 +1,7 @@
 import { render, fireEvent, screen } from '@testing-library/react';
 import LoginPage from '@/pages/LoginPage';
 import { toast } from 'react-toastify';
-import { configureStore } from '@reduxjs/toolkit';
+import configureStore from 'redux-mock-store'
 import { TestWrapper } from '@/__mocks__/TestWrapper';
 import { unauthed } from '@/__mocks__/storeMocks';
 
@@ -11,6 +11,7 @@ jest.mock('react-toastify', () => ({
   },
 }));
 describe('<LoginPage>', () => {
+  let mockstore: any = configureStore();
   let store: any;
   let elements: {
     loginInput: HTMLInputElement;
@@ -18,7 +19,7 @@ describe('<LoginPage>', () => {
     submitButton: HTMLElement;
   };
   beforeEach(() => {
-    store = configureStore(unauthed);
+    store = mockstore(unauthed);
     store.dispatch = jest.fn().mockReturnValue(Promise.resolve());
     render(
       <TestWrapper store={store}>

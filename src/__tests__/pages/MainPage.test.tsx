@@ -10,7 +10,7 @@ const mockStore = configureStore([thunk]);
 describe('<MainPage>', () => {
   let store;
   beforeEach(() => {
-    store = mockStore(authed.preloadedState);
+    store = mockStore(authed);
     render(
       <TestWrapper store={store}>
         <MainPage />

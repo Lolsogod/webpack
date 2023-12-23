@@ -1,7 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
+import configureStore from 'redux-mock-store';
 import UnAuthed from '@/router/UnAuthed';
 import {authed, unauthed} from '@/__mocks__/storeMocks';
 import { TestWrapper } from '@/__mocks__/TestWrapper';
@@ -11,9 +9,10 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('UnAuthed', () => {
-  let store: any;
+  let mockstore: any = configureStore();
+  let store: any
   const renderWithState = (state: any) => {
-    store = configureStore(state);
+    store = mockstore(state);
     store.dispatch = jest.fn();
 
     render(

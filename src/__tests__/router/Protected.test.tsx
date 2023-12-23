@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import Protected from '@/router/Protected';
-import { configureStore } from '@reduxjs/toolkit';
+import configureStore from 'redux-mock-store'
 import { authed, unauthed } from '@/__mocks__/storeMocks';
 import { TestWrapper } from '@/__mocks__/TestWrapper';
 
@@ -9,9 +9,10 @@ jest.mock('react-router-dom', () => ({
   Navigate: () => <div>Navigate Component</div>,
 }));
 describe('Protected', () => {
+  let mockstore: any = configureStore();
   let store: any;
   const renderWithState = (state: any) => {
-    store = configureStore(state);
+    store = mockstore(state);
     store.dispatch = jest.fn();
 
     render(
