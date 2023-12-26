@@ -8,7 +8,6 @@ import { useState } from "react";
 
 const Search = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { current } = useSelector((state: RootState) => state.movies);
   const [form, setForm] = useState({
     query: "",
     type: "name" as "name" | "genere",
@@ -25,7 +24,7 @@ const Search = () => {
   }
   
   return (
-    <form onSubmit={handleSearch} className={style.search}>
+    <form onSubmit={handleSearch} className={style.search} role="form">
         <input
           className={style.searchBar}
           type="text"

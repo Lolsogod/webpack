@@ -50,7 +50,7 @@ const MoviesSlice = createSlice({
       state.list = {data: action.payload, pending: false};
     });
     builder.addCase(fetchMovies.pending, (state) => {
-      state.list = {data: [], pending: true};
+      state.list = {data: state.list.data, pending: true};
     });
     builder.addCase(fetchMovie.fulfilled, (state, action) => {
       state.current = {data: action.payload, pending: false};
@@ -65,8 +65,8 @@ const MoviesSlice = createSlice({
   reducers: {
     switchSort(state, action: PayloadAction<"name" | "year">) {
       const type = action.payload;
+      state.sort.asc = type != state.sort.type ? true : !state.sort.asc;
       state.sort.type = type;
-      state.sort.asc = type !== state.sort.type ? true : !state.sort.asc;
     },
     commitSearch(state, action: PayloadAction<ISearch>) {
       state.search = action.payload;
@@ -75,4 +75,5 @@ const MoviesSlice = createSlice({
 });
 export const { switchSort, commitSearch } =
   MoviesSlice.actions;
+
 export default MoviesSlice.reducer;
