@@ -38,11 +38,13 @@ describe('Sort', () => {
     expect(buttons.length).toBe(2);
   });
 
-  test('renders buttons with correct names', () => {
+  test('renders button with release date name', () => {
     const yearButton = screen.getByRole('button', { name: /release date/i });
-    const nameButton = screen.getByRole('button', { name: /name/i });
-
     expect(yearButton).toBeInTheDocument();
+  });
+  
+  test('renders button with name', () => {
+    const nameButton = screen.getByRole('button', { name: /name/i });
     expect(nameButton).toBeInTheDocument();
   });
 

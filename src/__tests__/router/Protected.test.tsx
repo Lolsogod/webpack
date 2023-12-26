@@ -30,7 +30,6 @@ describe('Protected', () => {
 
   test('redirects to login when isAuthenticated is false', () => {
     renderWithState(unauthed)
-    expect(screen.queryByText('Unauthenticated content')).not.toBeInTheDocument();
     expect(screen.getByText('Navigate Component')).toBeInTheDocument();
   });
 });

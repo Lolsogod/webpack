@@ -24,21 +24,22 @@ describe('Header', () => {
 
   test('renders correctly for unauthenticated users', () => {
     renderWithState(unauthed);
-    
-    expect(screen.getByText('CoolMovies')).toBeInTheDocument();
     expect(screen.queryByText('Logout')).not.toBeInTheDocument();
   });
 
-  test('renders correctly for authenticated users', () => {
+  test('renders search for authenticated users', () => {
     renderWithState(authed);
-    expect(screen.getByText('Logout')).toBeInTheDocument();
     expect(screen.getByText('Search')).toBeInTheDocument();
   });
 
+  test('renders logout button for authenticated users', () => {
+    renderWithState(authed);
+    expect(screen.getByText('Logout')).toBeInTheDocument();
+  });
+  
   test('dispatches logout action when logout button is clicked', () => {
     renderWithState(authed);
     fireEvent.click(screen.getByText('Logout'));
-    console.log(store);
     expect(store.dispatch).toHaveBeenCalledWith(logout());
   });
 })

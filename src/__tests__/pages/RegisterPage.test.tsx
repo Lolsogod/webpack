@@ -42,23 +42,43 @@ describe('RegisterPage', () => {
     };
   });
 
-  test('renders registration form', () => {
+  test('renders email input', () => {
     expect(elements.emailInput).toBeInTheDocument();
+  });
+  
+  test('renders login input', () => {
     expect(elements.loginInput).toBeInTheDocument();
+  });
+  
+  test('renders password input', () => {
     expect(elements.passwordInput).toBeInTheDocument();
+  });
+  
+  test('renders repeat password input', () => {
     expect(elements.repeatPasswordInput).toBeInTheDocument();
+  });
+  
+  test('renders submit button', () => {
     expect(elements.submitButton).toBeInTheDocument();
   });
-
-  test('updates form fields on change', () => {
+  
+  test('updates email input on change', () => {
     fireEvent.change(elements.emailInput, { target: { value: 'test@test.com' } });
-    fireEvent.change(elements.loginInput, { target: { value: 'TESTUSER' } });
-    fireEvent.change(elements.passwordInput, { target: { value: 'password' } });
-    fireEvent.change(elements.repeatPasswordInput, { target: { value: 'password' } });
-
     expect(elements.emailInput.value).toBe('test@test.com');
+  });
+  
+  test('updates login input on change', () => {
+    fireEvent.change(elements.loginInput, { target: { value: 'TESTUSER' } });
     expect(elements.loginInput.value).toBe('TESTUSER');
+  });
+  
+  test('updates password input on change', () => {
+    fireEvent.change(elements.passwordInput, { target: { value: 'password' } });
     expect(elements.passwordInput.value).toBe('password');
+  });
+  
+  test('updates repeat password input on change', () => {
+    fireEvent.change(elements.repeatPasswordInput, { target: { value: 'password' } });
     expect(elements.repeatPasswordInput.value).toBe('password');
   });
 

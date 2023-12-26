@@ -17,8 +17,11 @@ describe('<MovieList>', () => {
     expect(movieElements).toHaveLength(mockMovieList.length);
   });
 
-  test('renders Movie components with correct information', () => {
-    expect(screen.getByText('Test Movie')).toBeInTheDocument();
-    expect(screen.getByText('Test Movie 2')).toBeInTheDocument();
+  test('renders first Movie components with correct information', () => {
+    expect(screen.getByText(mockMovieList[0].name)).toBeInTheDocument();
+  });
+
+  test('renders second Movie components with correct information', () => {
+    expect(screen.getByText(mockMovieList[1].name)).toBeInTheDocument();
   });
 });

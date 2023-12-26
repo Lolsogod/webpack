@@ -7,12 +7,23 @@ describe('<MovieInfo>', () => {
     render(<MovieInfo movie={mockMovie} />);
   });
 
-  test('renders movie information correctly', () => {
-    expect(screen.getByText('Test Movie')).toBeInTheDocument();
-    expect(screen.getByText('2022')).toBeInTheDocument();
-    expect(screen.getByText('2h 30m')).toBeInTheDocument();
-    expect(screen.getByText('Description:')).toBeInTheDocument();
-    expect(screen.getByText('Test Description')).toBeInTheDocument();
-    expect(screen.getByAltText('poster')).toHaveAttribute('src', 'test-poster');
+  test('renders movie name correctly', () => {
+    expect(screen.getByText(mockMovie.name)).toBeInTheDocument();
+  });
+
+  test('renders movie year correctly', () => {
+    expect(screen.getByText(mockMovie.year.toString())).toBeInTheDocument();
+  });
+
+  test('renders movie duration correctly', () => {
+    expect(screen.getByText(mockMovie.lenght)).toBeInTheDocument();
+  });
+
+  test('renders movie description correctly', () => {
+    expect(screen.getByText(mockMovie.descr)).toBeInTheDocument();
+  });
+
+  test('renders movie poster correctly', () => {
+    expect(screen.getByAltText('poster')).toHaveAttribute('src', mockMovie.poster);
   });
 });

@@ -20,13 +20,22 @@ describe('Movie', () => {
     );
   });
 
-  test('renders movie card with correct information', () => {
+  test('renders movie title with correct information', () => {
     expect(screen.getByText(mockMovie.name)).toBeInTheDocument();
-    expect(screen.getByText(mockMovie.year)).toBeInTheDocument();
-    expect(screen.getByText(mockMovie.genere)).toBeInTheDocument();
-    expect(screen.getByAltText('poster...')).toHaveAttribute('src', 'test-poster');
   });
 
+  test('renders movie year with correct information', () => {
+    expect(screen.getByText(mockMovie.year)).toBeInTheDocument();
+  });
+
+  test('renders movie genere with correct information', () => {
+    expect(screen.getByText(mockMovie.genere)).toBeInTheDocument();
+  });
+
+  test('renders movie poster with correct information', () => {
+    expect(screen.getByAltText('poster...')).toHaveAttribute('src', 'test-poster');
+  });
+  
   test('navigates to correct movie page on click', () => {
     fireEvent.click(screen.getByTestId('movie'));
     expect(mockNavigate).toHaveBeenCalledWith(`/movie/${mockMovie.id}`);

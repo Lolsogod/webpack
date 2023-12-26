@@ -11,27 +11,53 @@ jest.mock('react-redux', () => ({
   useDispatch: () => mockDispatch,
 }));
 
-test('renders Search component', async () => {
-  let mockstore: any = configureStore();
-  let store = mockstore(authed)
-  render(
-    <TestWrapper store={store}>
-      <Search />
-    </TestWrapper>
-  );
+describe('Search', () => {
+  let mockstore: any;
+  let store: any;
 
-  const inputElement = screen.getByRole('textbox');
-  expect(inputElement).toBeInTheDocument();
+  beforeEach(() => {
+    mockstore = configureStore();
+    store = mockstore(authed);
+    render(
+      <TestWrapper store={store}>
+        <Search />
+      </TestWrapper>
+    );
+  });
 
-  fireEvent.change(inputElement, { target: { value: 'test' } });
-  expect(inputElement).toHaveValue('test');
+  test('renders Search component', async () => {
+    const inputElement = screen.getByRole('textbox');
+    expect(inputElement).toBeInTheDocument();
+  });
 
-  const radioElement = screen.getByLabelText('Title');
-  fireEvent.click(radioElement);
+  test('updates input value on change', async () => {
+    const inputElement = screen.getByRole('textbox');
+    fireEvent.change(inputElement, { target: { value: 'test' } });
+    expect(inputElement).toHaveValue('test');
+  });
 
-  const formElement = screen.getByRole('form');
-  fireEvent.submit(formElement);
+  test('clicks on radio button', async () => {
+    const radioElement = screen.getByLabelText('Title');
+    fireEvent.click(radioElement);
+    expect(radioElement).toBeChecked();
+  });
+  
+  test('submits form', async () => {
+    const formElement = screen.getByRole('form');
+    fireEvent.submit(formElement);
+    expect(mockDispatch).toHaveBeenCalled(); 
+  });
 
-  console.log(formElement.outerHTML);
-  expect(mockDispatch).toHaveBeenCalledWith(commitSearch({ query: 'test', type: 'name' }));
+  test('dispatches commitSearch action on form submit', async () => {
+    const inputElement = screen.getByRole('textbox');
+    fireEvent.change(inputElement, { target: { value: 'test' } });
+
+    const radioElement = screen.getByLabelText('Title');
+    fireEvent.click(radioElement);
+
+    const formElement = screen.getByRole('form');
+    fireEvent.submit(formElement);
+
+    expect(mockDispatch).toHaveBeenCalledWith(commitSearch({ query: 'test', type: 'name' }));
+  });
 });

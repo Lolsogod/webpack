@@ -15,15 +15,23 @@ describe('Button', () => {
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
-  test('applies correct styles based on variant prop', () => {
-    const { getByText, rerender } = render(<Button variant="outline">Test Button</Button>);
+  test('applies outline styles when variant is outline', () => {
+    const { getByText } = render(<Button variant="outline">Test Button</Button>);
     expect(getByText('Test Button')).toHaveClass('btn', 'outline');
-
-    rerender(<Button variant="ghost">Test Button</Button>);
+  });
+  
+  test('applies ghost styles when variant is ghost', () => {
+    const { getByText } = render(<Button variant="ghost">Test Button</Button>);
     expect(getByText('Test Button')).toHaveClass('btn', 'ghost');
-
-    rerender(<Button>Test Button</Button>);
+  });
+  
+  test('applies default styles when no variant is provided', () => {
+    const { getByText } = render(<Button>Test Button</Button>);
     expect(getByText('Test Button')).toHaveClass('btn');
+  });
+  
+  test('does not apply outline or ghost styles when no variant is provided', () => {
+    const { getByText } = render(<Button>Test Button</Button>);
     expect(getByText('Test Button')).not.toHaveClass('outline', 'ghost');
   });
 });

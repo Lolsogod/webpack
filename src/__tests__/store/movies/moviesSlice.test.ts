@@ -41,24 +41,37 @@ describe("movies reducer", () => {
     console.log(store.getState().movies.sort);
     store.dispatch(switchSort("year"));
     expect(store.getState().movies.sort.type).toEqual("year");
-    console.log(store.getState().movies.sort);
   });
 
-  test("should handle fetchMovies.fulfilled", async () => {
+  test("should handle fetchMovies.fulfilled and update movies list data", async () => {
     (axios.get as jest.Mock).mockResolvedValueOnce({ data: mockMovieList });
-
+  
     await store.dispatch(fetchMovies());
-
+  
     expect(store.getState().movies.list.data).toEqual(mockMovieList);
+  });
+  
+  test("should handle fetchMovies.fulfilled and update movies list pending status", async () => {
+    (axios.get as jest.Mock).mockResolvedValueOnce({ data: mockMovieList });
+  
+    await store.dispatch(fetchMovies());
+  
     expect(store.getState().movies.list.pending).toEqual(false);
   });
-
-  test("should handle fetchMovie.fulfilled", async () => {
+  
+  test("should handle fetchMovie.fulfilled and update current movie data", async () => {
     (axios.get as jest.Mock).mockResolvedValueOnce({ data: mockMovie });
-
+  
     await store.dispatch(fetchMovie("1"));
-
+  
     expect(store.getState().movies.current.data).toEqual(mockMovie);
+  });
+  
+  test("should handle fetchMovie.fulfilled and update current movie pending status", async () => {
+    (axios.get as jest.Mock).mockResolvedValueOnce({ data: mockMovie });
+  
+    await store.dispatch(fetchMovie("1"));
+  
     expect(store.getState().movies.current.pending).toEqual(false);
   });
 

@@ -33,20 +33,6 @@ describe('<LoginPage>', () => {
     };
   });
 
-
-  test('renders login form', () => {
-    expect(elements.loginInput).toBeInTheDocument();
-    expect(elements.passwordInput).toBeInTheDocument();
-    expect(elements.submitButton).toBeInTheDocument();
-  });
-
-  test('updates login and password fields on change', () => {
-    fireEvent.change(elements.loginInput, { target: { value: 'testuser' } });
-    fireEvent.change(elements.passwordInput, { target: { value: 'testpassword' } });
-
-    expect(elements.loginInput.value).toBe('testuser');
-    expect(elements.passwordInput.value).toBe('testpassword');
-  });
   test('should show error toast when form has errors', async () => {
     fireEvent.change(elements.loginInput, { target: { value: 'invalid login' } });
     fireEvent.change(elements.passwordInput, { target: { value: 'short' } });
@@ -69,5 +55,29 @@ describe('<LoginPage>', () => {
     fireEvent.click(elements.submitButton);
 
     expect(store.dispatch).toHaveBeenCalled();
+  });
+
+  test('renders login input field', () => {
+    expect(elements.loginInput).toBeInTheDocument();
+  });
+
+  test('renders password input field', () => {
+    expect(elements.passwordInput).toBeInTheDocument();
+  });
+
+  test('renders submit button', () => {
+    expect(elements.submitButton).toBeInTheDocument();
+  });
+
+  test('updates login field on change', () => {
+    fireEvent.change(elements.loginInput, { target: { value: 'testuser' } });
+
+    expect(elements.loginInput.value).toBe('testuser');
+  });
+
+  test('updates password field on change', () => {
+    fireEvent.change(elements.passwordInput, { target: { value: 'testpassword' } });
+
+    expect(elements.passwordInput.value).toBe('testpassword');
   });
 });

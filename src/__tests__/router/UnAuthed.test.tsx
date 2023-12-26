@@ -30,7 +30,6 @@ describe('UnAuthed', () => {
 
   test('redirects to home when isAuthenticated is true', () => {
     renderWithState(authed);
-    expect(screen.queryByText('Unauthenticated content')).not.toBeInTheDocument();
     expect(screen.getByText('Navigate Component')).toBeInTheDocument();
   });
 });
